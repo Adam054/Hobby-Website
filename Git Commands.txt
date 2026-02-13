@@ -1,0 +1,8 @@
+|TO DOWNLOAD|
+git pull
+
+
+|TO SAVE|
+git add . 
+git commit -m "Work done today" 
+git push 
