@@ -1,7 +1,7 @@
 <?php
 $server = "localhost";
-$user   = "root";           // change if you have different user
-$pass   = "";               // often empty on XAMPP
+$user   = "root";           
+$pass   = "";               
 $dbname = "skiing_db";
 
 $conn = mysqli_connect($server, $user, $pass, $dbname);

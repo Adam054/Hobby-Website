@@ -1,0 +1,36 @@
+// ScollToTop.js
+
+console.log("ScrollToTop.js is loaded");
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM is ready, looking for button");
+
+    const btn = document.getElementById('scrollToTopBtn');
+
+    if (!btn) {
+        console.error("Scroll button NOT FOUND. Check the id='scrollToTopBtn'");
+        return;
+    }
+
+    console.log("Button found");
+
+    // Show/hide logic
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {          // Decreased px to get working / Reset to 300px after testing.
+            btn.classList.remove('d-none');
+            console.log("Showing button");
+        } else {
+            btn.classList.add('d-none');
+            console.log("Hiding button");
+        }
+    });
+
+    // Click = scroll up
+    btn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+});
+
