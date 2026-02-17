@@ -1,0 +1,37 @@
+/* Modern box-sizing reset (Bootstrap doesn't do this globally) */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/* floating scroll-to-top button hover effect */
+#scrollToTopBtn:hover 
+{
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+main, .container-custom 
+{
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+.card:hover 
+{
+    transform: translateY(-4px);
+    transition: transform 0.15s;
+}
+
+footer 
+{
+    background: #1a3c5e;
+}
+@media (max-width: 576px) 
+{
+    .card-img-top {
+      height: 160px;          /* smaller images for phones */
+    }
+    .card-body {
+      padding: 1rem;          /* Less padding for mobile */
+    }
+}
