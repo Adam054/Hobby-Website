@@ -19,6 +19,10 @@
 //      - I decided i wanted to add snowfall to the filter. (for some genuine usability) :)
 //      - countryFilter ---> ResortFilter
 //      -
+// 5.0
+//      - 2 classmates mentioned Elevation Filtering.
+//      - I am adding Elevation filtering through the same method of making the Snowfall filter,
+//      - It should be easier as it is literally +/- 2000
 
 console.log("Filter.js is loaded!")
 document.addEventListener('DOMContentLoaded', () => 
@@ -32,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () =>
     Select.addEventListener('change', () => 
     {
         const value = Select.value.trim();
-        //Swvug Code //console.log("Filter changed to:", value);
+        //Debug Code //console.log("Filter changed to:", value);
         // show all
         if (value === '') 
         {
@@ -76,19 +80,40 @@ document.addEventListener('DOMContentLoaded', () =>
             else if (value.startsWith('s-'))
             {
                 // Find the snowfall line: <strong>Avg Snowfall:</strong> 1,200 cm
-                const snowLine = Array.from(card.querySelectorAll('p strong'))
-                .find(el => el.textContent.includes('Avg Snowfall'));
+                const snowLine = Array.from(card.querySelectorAll('p strong')).find(el => el.textContent.includes('Avg Snowfall'));
                 if (snowLine) {
                     const snowText = snowLine.nextSibling.textContent.trim().replace(/[^0-9]/g, '');
                     const snowfall = parseInt(snowText, 10) || 0;
                     if (value === 's-high')    show = snowfall > 800;
                     if (value === 's-med')     show = snowfall >= 400 && snowfall <= 800;
                     if (value === 's-low')     show = snowfall < 400 && snowfall > 0;
-                    console.log(`Snowfall filter: ${snowfall} cm → show = ${show}`);
-                } else {
+                    console.log(`Snowfall filter: ${snowfall} cm --> show = ${show}`);
+                } 
+                else 
+                {
             //DebugCode
                     console.warn("Snowfall data not found in card"); 
                 }
+            }
+            // Elevation Filter 17/02/26
+            else if (value.startsWith('e-')) // THIS IS NO LONGER W.O.P. // asf of 17/02/26, this is no longer a Work in Progress. :)
+            {
+                const ElevationLine = Array.from(card.querySelectorAll('p strong')).find(el => el.textContent.includes('Elevation'));
+                console.log("Checked for Elevation"); // Debug Code
+                if (ElevationLine)
+                {
+                    const ElevationNumber = ElevationLine.nextSibling.textContent.trim().replace(/[^0-9]/g, '');
+                    console.log(`Elevation Number = ${ElevationNumber}`);
+                    const Elevation = parseInt(ElevationNumber, 10) || 0;
+                    if (value === 'e-high') show = Elevation >= 2000;
+                    if (value === 'e-low') show = Elevation <= 2000;
+                    console.log(`Elevation filter: ${Elevation} Meters --> show = ${show}`); // Debug Code
+                }
+                else
+                {
+                    console.warn('No Evelvation Data Found?'); // Debug Code
+                }
+
             }
             card.parentElement.style.display = show ? 'block' : 'none';
             

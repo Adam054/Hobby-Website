@@ -1,3 +1,7 @@
+|START OF SESSION|
+git init 
+git branch (main for college, master for home)
+
 |TO DOWNLOAD|
 git pull
 

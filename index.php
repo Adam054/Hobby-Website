@@ -1,52 +1,14 @@
 <?php
-// include 'db_connect.php';  // Uncomment only if adding DB data
+// include 'Database/ski_db_connect.php';  // Uncomment only if adding DB data
 ?>
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
-<head>
-  <!-- Meta tags for proper encoding and mobile responsiveness -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Page title -->
-  <title>My Ski Resorts – Home</title>
-  
-  <!-- Bootstrap 5.3.3 CSS CDN for layout, components, and dark theme support -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-        rel="stylesheet" 
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
-        crossorigin="anonymous">
-  
-  <!-- Bootstrap Icons for arrow-up in scroll button -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  
-  <!-- Custom dark theme overrides -->
-  <style>
-    body {
-      background-color: #0d1117;     /* Deep dark background for moody ski vibe */
-      color: #e6edf3;                /* Light text for readability */
-    }
-    .hero {
-      /* Hero with dark overlay on snowy mountain background */
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), 
-                  url('https://images.unsplash.com/photo-1551524559-8af2414e4b28?auto=format&fit=crop&q=80') 
-                  center/cover no-repeat;
-      min-height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-    .card {
-      background-color: #161b22;     /* Matching dark card background */
-      border-color: #30363d;
-    }
-    footer {
-      background-color: #010409;     /* Near-black footer */
-    }
-  </style>
-</head>
+<?php include 'Headers/indexheader.php'; ?>
+
+<!-- Styles Sheet -->
+<link rel="stylesheet" href="css/indstyle.css">
+<link rel="stylesheet" href="css/GStyles.css">
 
 <body>
 
@@ -81,7 +43,7 @@
     <i class="bi bi-arrow-up"></i>
   </button>
 
-  <!-- Hero Section - Welcoming visual introduction -->
+  <!-- Hero Section, Introduction to the website. -->
   <div class="hero">
     <div class="container">
       <h1 class="display-4 fw-bold text-white mb-3">Discover the World's Best Ski Resorts</h1>
@@ -161,7 +123,7 @@
           <div class="card-body">
             <h5 class="card-title">Pinnacle of Varied Terrain?</h5>
             <p class="card-text text-secondary">
-              From beginner-friendly blues to expert pistes (Black runs) and off-piste skiing available.
+              From beginner friendly blues to expert pistes (Black runs) and off-piste skiing available.
             </p>
           </div>
         </div>
@@ -171,22 +133,18 @@
     <!-- technical note -->
     <div class="text-center mt-5">
       <p class="text-secondary">
-        Last Updated • <?php echo date("d F Y"); ?>
+        Last Updated • <?php echo date("d F Y", strtotime("2026-02-17")); ?>
       </p>
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="py-4 text-center text-secondary border-top border-secondary">
-    <div class="container">
-      <p class="mb-0">Haydn Maguire © <?php echo date("Y"); ?></p>
-    </div>
-  </footer>
+    <!-- Footer -->
+  <?php include 'Footer/GlobalFooter.php' ?> <!-- Footer Optimised to use a single file for the entire site -->
 
-  <!-- Bootstrap JS bundle (includes Popper for dropdowns, etc.) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
-          crossorigin="anonymous"></script>
+  <!-- Bootstrap JS (includes Popper for tooltips, dropdowns (CSS)) -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+      crossorigin="anonymous"></script>
 
   <!-- external JS files -->
   <!-- ScrollToTop.js shows/hides and handles the floating arrow button -->

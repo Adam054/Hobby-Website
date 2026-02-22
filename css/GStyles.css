@@ -24,7 +24,8 @@ main, .container-custom
 
 footer 
 {
-    background: #1a3c5e;
+   /* background: #010409; */
+    background-color: rgb(2, 5, 9);
 }
 @media (max-width: 576px) 
 {

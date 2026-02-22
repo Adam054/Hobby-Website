@@ -1,0 +1,22 @@
+body {
+    background-color: rgb(13, 17, 23);     /* Dark Background */
+    color:   rgb(230, 237, 243);           /* Light text for readability */
+    }
+.hero {
+    /* Hero with dark overlay */
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), 
+    url('https://images.pexels.com/photos/414459/pexels-photo-414459.jpeg?cs=srgb&dl=pexels-pixabay-414459.jpg&fm=jpg')
+    center/cover no-repeat;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    }
+.card   {
+        background-color: rgb(22, 27, 34); /* Matching dark card background */
+        border-color: rgb(48,54,61);
+        }
+footer {
+        background-color: rgb(1, 4, 9); /* Near-black footer */
+        }
