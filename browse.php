@@ -1,3 +1,4 @@
+<!--browse.php-->
 <?php
 include 'Database/ski_db_connect.php';
 ?>

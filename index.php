@@ -1,3 +1,4 @@
+<!--index.php-->
 <?php
 // include 'Database/ski_db_connect.php';  // Uncomment only if adding DB data
 ?>
@@ -64,25 +65,26 @@
               Welcome! This is my personal read-only hobby website about <strong>ski resorts around the world</strong>.
             </p>
             <p>
-              I created this as part of my <strong>Web Technologies & Applications Assignment 1</strong>. 
+              I created this as part of my <strong>Web Technologies & Applications Assignment</strong>. 
               The project was to build a simple, responsive web app that lets visitors explore a collection 
-              of 10 items in this case ski resorts, from a real database that i made — all without any user input or editing.
+              of 10 items in this case ski resorts, from a real database that i made, all without any user input or editing.
             </p>
             <p>
               Key features:
             </p>
             <ul class="list-group list-group-flush mb-4">
               <li class="list-group-item bg-dark text-light border-secondary">
-                <strong>Home page</strong> — This page introduces the site, and my project of making a Hobby Website, The Hobby is skiing.
+                <strong>Home page</strong> — This page introduces the site, and my project of making a Hobby Website, The Hobby i choose is skiing.
               </li>
               <li class="list-group-item bg-dark text-light border-secondary">
-                <strong>Browse page</strong> — displays 10+ ski resorts pulled dynamically from a MySQL database using PHP (Ultimately XAMPP)
+                <strong>Browse page</strong> — displays 10 ski resorts pulled dynamically from a MySQL database using PHP (Ultimately XAMPP)
               </li>
               <li class="list-group-item bg-dark text-light border-secondary">
-                <strong>Responsive design</strong> — This website used Bootstrap 5.3.3, This allows the site to be scaled for Phones, Tablets and Desktop.
+                <strong>Responsive design</strong> — This website used Bootstrap 5.3.3, This allows the site to be scaled for Phones, Tablets and Desktops.
               </li>
               <li class="list-group-item bg-dark text-light border-secondary">
-                <strong>Client-side extras</strong> — I used Vanilla Javascript for Filtering by Country, Favourites or Snowfall and for the return-to-top button
+                <strong>Client-side extras</strong> — I used Vanilla Javascript for Filtering by Country, Favourites, Snowfall or Elevation and for the return-to-top button. 
+                Now you can also enjoy the dynamic Heading, Synced with the Filter!.
               </li>
             </ul>
             <p class="text-center text-secondary">
