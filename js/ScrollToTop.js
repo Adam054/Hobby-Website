@@ -25,7 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log("Button found");
 
     // Show/hide logic
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function() 
+    {
         if (window.scrollY > 250) {          // Decreased px to get working / Reset to 300px after testing.
             btn.classList.remove('d-none');
             console.log("Showing button");

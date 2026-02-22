@@ -10,7 +10,6 @@ include 'Database/ski_db_connect.php';
 
 <!-- Styles Sheet -->
 <link rel="stylesheet" href="css/GStyles.css">
-
 <body>
 
   <!-- Navigation Bar -->
@@ -57,7 +56,7 @@ include 'Database/ski_db_connect.php';
           Filter by Country/Favourites/Snowfall or Elevation
         </label>
         <select id="ResortFilter" class="form-select">
-          <option value="">🚠 All Resorts</option>
+          <option value="all">🚠 All Resorts</option>
   <!-- Country ;| -->
           <optgroup label="By Country">
           <option value="c-Austria">⛰ Austria</option>
@@ -159,6 +158,6 @@ include 'Database/ski_db_connect.php';
   
   <!-- ScrollToTop.js handles the floating scroll button -->
   <script src="js/ScrollToTop.js"></script>
-
+  <div class="bottom-fade" id="bottomFade"></div>
 </body>
 </html>

@@ -149,6 +149,6 @@
   <!-- external JS files -->
   <!-- ScrollToTop.js shows/hides and handles the floating arrow button -->
   <script src="js/ScrollToTop.js"></script>
-
+  <div class="bottom-fade" id="bottomFade"></div>
 </body>
 </html>

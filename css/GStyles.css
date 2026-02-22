@@ -21,11 +21,26 @@ main, .container-custom
     transform: translateY(-4px);
     transition: transform 0.15s;
 }
-
 footer 
 {
    /* background: #010409; */
     background-color: rgb(2, 5, 9);
+}
+.bottom-fade 
+{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to top, rgba(13, 17, 23, 0.5) 0%, rgba(13, 17, 23, 0) 100%);
+    pointer-events: none;           /* Lets clicks go through to content below */
+    z-index: 900;                   /* Below the scroll button (which is 9999) */
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.bottom-fade.visible {
+    opacity: 1;
 }
 @media (max-width: 576px) 
 {
