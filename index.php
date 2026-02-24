@@ -1,55 +1,16 @@
+<!--index.php-->
 <?php
-// include 'db_connect.php';  // Uncomment only if adding DB data
+// include 'Database/ski_db_connect.php';  // Uncomment only if adding DB data
 ?>
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
-<head>
-  <!-- Meta tags for proper encoding and mobile responsiveness -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Page title -->
-  <title>My Ski Resorts – Home</title>
-  
-  <!-- Favicon (ICON) -->
-  <link rel="icon" type="image/x-icon" href="logo/hm.ico">
+<!-- Index Specific Header -->
+<?php include 'Headers/indexheader.php'; ?>
 
-  <!-- Bootstrap 5.3.3 CSS CDN for layout, components, and dark theme support -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-        rel="stylesheet" 
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
-        crossorigin="anonymous">
-  
-  <!-- Bootstrap Icons for arrow-up in scroll button -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  
-  <!-- Custom dark theme overrides (Soon to be optimised) --> 
-  <style>
-    body {
-      background-color: #0d1117;     /* Deep dark background for moody ski vibe */
-      color: #e6edf3;                /* Light text for readability */
-    }
-    .hero {
-      /* Hero with dark overlay on snowy mountain background */
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), 
-      url('https://images.unsplash.com/photo-1551524559-8af2414e4b28?auto=format&fit=crop&q=80') 
-      center/cover no-repeat;
-      min-height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-    .card {
-      background-color: #161b22;     /* Matching dark card background */
-      border-color: #30363d;
-    }
-    footer {
-      background-color: #010409;     /* Near-black footer */
-    }
-  </style>
-</head>
+<!-- Styles Sheet -->
+<link rel="stylesheet" href="css/indstyle.css">
+<link rel="stylesheet" href="css/GStyles.css">
 
 <body>
 
@@ -64,12 +25,15 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="browse.php">Browse Resorts</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="browse.php">Browse Resorts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="resortMap.php">Resort Map</a>
+            </li>
         </ul>
       </div>
     </div>
@@ -105,25 +69,26 @@
               Welcome! This is my personal read-only hobby website about <strong>ski resorts around the world</strong>.
             </p>
             <p>
-              I created this as part of my <strong>Web Technologies & Applications Assignment 1</strong>. 
+              I created this as part of my <strong>Web Technologies & Applications Assignment</strong>. 
               The project was to build a simple, responsive web app that lets visitors explore a collection 
-              of 10 items in this case ski resorts, from a real database that i made — all without any user input or editing.
+              of 10 items in this case ski resorts, from a real database that i made, all without any user input or editing.
             </p>
             <p>
               Key features:
             </p>
             <ul class="list-group list-group-flush mb-4">
               <li class="list-group-item bg-dark text-light border-secondary">
-                <strong>Home page</strong> — This page introduces the site, and my project of making a Hobby Website, The Hobby is skiing.
+                <strong>Home page</strong> — This page introduces the site, and my project of making a Hobby Website, The Hobby i choose is skiing.
               </li>
               <li class="list-group-item bg-dark text-light border-secondary">
-                <strong>Browse page</strong> — displays 10+ ski resorts pulled dynamically from a MySQL database using PHP (Ultimately XAMPP)
+                <strong>Browse page</strong> — displays 10 ski resorts pulled dynamically from a MySQL database using PHP (Ultimately XAMPP)
               </li>
               <li class="list-group-item bg-dark text-light border-secondary">
-                <strong>Responsive design</strong> — This website used Bootstrap 5.3.3, This allows the site to be scaled for Phones, Tablets and Desktop.
+                <strong>Responsive design</strong> — This website used Bootstrap 5.3.3, This allows the site to be scaled for Phones, Tablets and Desktops.
               </li>
               <li class="list-group-item bg-dark text-light border-secondary">
-                <strong>Client-side extras</strong> — I used Vanilla Javascript for Filtering by Country, Favourites or Snowfall and for the return-to-top button
+                <strong>Client-side extras</strong> — I used Vanilla Javascript for Filtering by Country, Favourites, Snowfall or Elevation and for the return-to-top button. 
+                Now you can also enjoy the dynamic Heading, Synced with the Filter!.
               </li>
             </ul>
             <p class="text-center text-secondary">
@@ -179,21 +144,17 @@
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="py-4 text-center text-secondary border-top border-secondary">
-    <div class="container">
-      <p class="mb-0">Haydn Maguire © <?php echo date("Y"); ?></p>
-    </div>
-  </footer>
+    <!-- Footer -->
+  <?php include 'Footer/GlobalFooter.php' ?> <!-- Footer Optimised to use a single file for the entire site -->
 
-  <!-- Bootstrap JS bundle (includes Popper for dropdowns, etc.) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
-          crossorigin="anonymous"></script>
+  <!-- Bootstrap JS (includes Popper for tooltips, dropdowns (CSS)) -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+      crossorigin="anonymous"></script>
 
   <!-- external JS files -->
   <!-- ScrollToTop.js shows/hides and handles the floating arrow button -->
   <script src="js/ScrollToTop.js"></script>
-
+  <div class="bottom-fade" id="bottomFade"></div>
 </body>
 </html>

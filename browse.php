@@ -1,53 +1,16 @@
+<!--browse.php-->
 <?php
-include 'db_connect.php';
+include 'Database/ski_db_connect.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
-<head>
-  <!-- Meta tags for charset and responsive viewport -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Page title -->
-  <title>Browse Ski Resorts</title>
-  <!-- Favicon (ICON) -->
-   <link rel="icon" type="image/x-icon" href="logo/hm.ico"> 
 
-  <!-- Bootstrap 5.3.3 CSS CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-        rel="stylesheet" 
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
-        crossorigin="anonymous">
-  
-  <!-- Bootstrap Icons CDN (for arrow-up icon in scroll button) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  
-  <!-- Custom dark theme styles -->
-  <style>
-    body {
-      background-color: #0d1117;     /* the dark background */
-      color: #e6edf3;                /* the lighter text for contrast */
-    }
-    .card {
-      background-color: #161b22;     /* Dark card background */
-      border-color: #30363d;         /* Subtle border */
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .card:hover {
-      transform: translateY(-4px);   /* Lift effect on hover */
-      box-shadow: 0 10px 20px rgba(0,0,0,0.4); 
-    }
-    .card-img-top {
-      height: 200px;
-      object-fit: cover;             /* Ensures images fill space nicely */
-    }
-    footer {
-      background-color: #010409;     /* Almost black footer */
-    }
-  </style>
-</head>
+<!-- Browse Specific Header -->
+<?php include 'Headers/browseheader.php'; ?>
 
+<!-- Styles Sheet -->
+<link rel="stylesheet" href="css/GStyles.css">
 <body>
 
   <!-- Navigation Bar -->
@@ -61,12 +24,15 @@ include 'db_connect.php';
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index.php">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="browse.php">Browse Resorts</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.php">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="browse.php">Browse Resorts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="resortMap.php">Resort Map</a>
+            </li>
         </ul>
       </div>
     </div>
@@ -94,30 +60,30 @@ include 'db_connect.php';
           Filter by Country/Favourites/Snowfall or Elevation
         </label>
         <select id="ResortFilter" class="form-select">
-          <option value="">All Resorts</option>
- <!-- Country ;| -->
+          <option value="all">🚠 All Resorts</option>
+  <!-- Country ;| -->
           <optgroup label="By Country">
-          <option value="c-Austria">Austria</option>
-          <option value="c-Canada">Canada</option>
-          <option value="c-France">France</option>
-          <option value="c-Japan">Japan</option>
-          <option value="c-Switzerland">Switzerland</option>
-          <option value="c-USA">USA</option>
+          <option value="c-Austria">⛰ Austria</option>
+          <option value="c-Canada">🍁 Canada</option>
+          <option value="c-France">🗼 France</option>
+          <option value="c-Japan">🌸Japan</option>
+          <option value="c-Switzerland">🏔 Switzerland</option>
+          <option value="c-USA">🦅 USA</option>
   </optgroup>
 <!-- Snowfall :/ -->
   <optgroup label="By Snowfall">
-    <option value="s-high">High Snowfall (>800 cm)</option>
-    <option value="s-med">Medium Snowfall (400-800 cm)</option>
-    <option value="s-low">Low Snowfall (< 400 cm)</option> <!-- Space must remain otherwise break! -->
+    <option value="s-high">🌨 High Snowfall (>800 cm)</option>
+    <option value="s-med">❄Medium Snowfall (400-800 cm)</option>
+    <option value="s-low">🌤 Low Snowfall (< 400 cm)</option> <!-- Space must remain otherwise break! -->
   </optgroup>
 <!-- Elevation :] 17/02/26 -->
   <optgroup label="Elevation">
-    <option value="e-high">Over 2000 Meters</option>
-    <option value="e-low">Under 2000 Meters</option>
+    <option value="e-high">🏔 Over 2000 Meters</option>
+    <option value="e-low">🌲 Under 2000 Meters</option>
   </optgroup>
 <!-- Favourites :)  -->
   <optgroup label="Favourites">
-    <option value="author-fav">Author's Favourite</option>
+    <option value="author-fav">🏆 Author's Favourite</option>
   </optgroup>
         </select>
       </div>
@@ -183,16 +149,12 @@ include 'db_connect.php';
   </div> <!-- End of .container -->
 
   <!-- Footer -->
-  <footer class="py-4 text-center text-secondary border-top border-secondary">
-    <div class="container">
-      <p class="mb-0">Haydn Maguire © <?php echo date("Y"); ?></p>
-    </div>
-  </footer>
+  <?php include 'Footer/GlobalFooter.php' ?> <!-- Footer Optimised to use a single file for the entire site -->
 
-  <!-- Bootstrap JS (includes Popper for tooltips, dropdowns, etc.) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
-          crossorigin="anonymous"></script>
+      <!-- Bootstrap JS (includes Popper for tooltips, dropdowns (CSS)) -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+      crossorigin="anonymous"></script>
 
   <!-- Custom JavaScript files (external for better organisation) -->
   <!-- Filter.js handles country + favourites filtering -->
@@ -200,6 +162,6 @@ include 'db_connect.php';
   
   <!-- ScrollToTop.js handles the floating scroll button -->
   <script src="js/ScrollToTop.js"></script>
-
+  <div class="bottom-fade" id="bottomFade"></div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-// Filter.js 3.0
+// Filter.js 6.0
 
 // 1.0
 //  - Basic filter script by country.
@@ -23,6 +23,13 @@
 //      - 2 classmates mentioned Elevation Filtering.
 //      - I am adding Elevation filtering through the same method of making the Snowfall filter,
 //      - It should be easier as it is literally +/- 2000
+// 6.0
+//      - I decided it would be ideal for the header of browse to change with the filter.
+//      - I have added a couple lines to the script to ensure it looks for the header
+//      - Runs through an if statement and changes the header.
+//  Chnages:
+//      - Checks filter for selection and replaces H1 with selection.
+//      - All selection now has value "all", not " ".
 
 console.log("Filter.js is loaded!")
 document.addEventListener('DOMContentLoaded', () => 
@@ -37,8 +44,43 @@ document.addEventListener('DOMContentLoaded', () =>
     {
         const value = Select.value.trim();
         //Debug Code //console.log("Filter changed to:", value);
-        // show all
-        if (value === '') 
+
+                // Changes H1 with the selection of the drop down.
+                const h1 = document.querySelector('h1.text-center.mb-5');
+                if (h1) 
+                {
+                    let newTitle = "All Ski Resorts";
+        
+                    if (value === 'author-fav')
+                    {
+                        newTitle = "Author's Favourite Resorts";
+                    } 
+                    else if (value.startsWith('c-'))   
+                    {
+                        const country = value.replace('c-', '');
+                        newTitle = `Ski Resorts in ${country}!`;
+                    }
+                    else if (value.startsWith('s-')) 
+                    {
+                        if (value === 's-high')   newTitle = "High Snowfall Resorts";
+                        if (value === 's-med')    newTitle = "Medium Snowfall Resorts";
+                        if (value === 's-low')    newTitle = "Low Snowfall Resorts";
+                    } 
+                    else if (value.startsWith('e-')) 
+                    {
+                        if (value === 'e-high')   newTitle = "High Elevation Resorts";
+                        if (value === 'e-low')    newTitle = "Low Elevation Resorts";
+                    }
+                    else if (value === 'all')
+                    {
+                        newTitle = "All Ski Resorts";
+                    }
+        
+                    h1.textContent = newTitle;
+                }    
+        
+        // Show All, Now has a value.
+        if (value === 'all') 
         {
             document.querySelectorAll('.card').forEach(card => 
             {
@@ -46,6 +88,8 @@ document.addEventListener('DOMContentLoaded', () =>
             });
             return;
         }
+
+        
 
         const cards = document.querySelectorAll('.card');
 
@@ -96,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () =>
                 }
             }
             // Elevation Filter 17/02/26
-            else if (value.startsWith('e-')) // THIS IS A W.O.P.
+            else if (value.startsWith('e-')) // THIS IS NO LONGER W.O.P. // asf of 17/02/26, this is no longer a Work in Progress. :)
             {
                 const ElevationLine = Array.from(card.querySelectorAll('p strong')).find(el => el.textContent.includes('Elevation'));
                 console.log("Checked for Elevation"); // Debug Code
@@ -105,18 +149,17 @@ document.addEventListener('DOMContentLoaded', () =>
                     const ElevationNumber = ElevationLine.nextSibling.textContent.trim().replace(/[^0-9]/g, '');
                     console.log(`Elevation Number = ${ElevationNumber}`);
                     const Elevation = parseInt(ElevationNumber, 10) || 0;
-                    if (value === 'e-high') show = Elevation <= 2001;
-                    if (value === 'e-low') show = Elevation > 2000;
+                    if (value === 'e-high') show = Elevation >= 2000;
+                    if (value === 'e-low') show = Elevation <= 2000;
                     console.log(`Elevation filter: ${Elevation} Meters --> show = ${show}`); // Debug Code
                 }
                 else
                 {
                     console.warn('No Evelvation Data Found?'); // Debug Code
                 }
-
             }
             card.parentElement.style.display = show ? 'block' : 'none';
             
-        });
+        });     
     });
 });
