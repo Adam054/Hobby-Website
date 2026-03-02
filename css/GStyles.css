@@ -21,6 +21,9 @@ main, .container-custom
     transform: translateY(-4px);
     transition: transform 0.15s;
 }
+.card-body{
+    box-shadow: 0 6px 16px rgba(82, 125, 255, 0.379);
+}
 footer 
 {
    /* background: #010409; */

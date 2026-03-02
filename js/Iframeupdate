@@ -1,0 +1,13 @@
+// iframeloader.js
+console.log("frameloader.js loaded successfully!");
+function loadResorts(country) {
+    const iframe = document.getElementById('resortsIframe');
+    const title = document.getElementById('iframeTitle');
+    
+    iframe.style.display = 'block';
+    title.textContent = country + " Resorts";
+    
+    iframe.src = "browse.php?country=" + encodeURIComponent(country);
+    
+    iframe.scrollIntoView({ behavior: 'smooth' });
+}

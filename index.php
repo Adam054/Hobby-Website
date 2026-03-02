@@ -5,6 +5,7 @@
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
+<!-- Index Specific Header -->
 <?php include 'Headers/indexheader.php'; ?>
 
 <!-- Styles Sheet -->
@@ -24,12 +25,15 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="browse.php">Browse Resorts</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="browse.php">Browse Resorts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="ResortMap.php">Resort Map</a>
+            </li>
         </ul>
       </div>
     </div>
