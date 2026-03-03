@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () =>
                     h1.textContent = newTitle;
                 }    
         
-        // Show All, Now has a value.
+        // show all
         if (value === 'all') 
         {
             document.querySelectorAll('.card').forEach(card => 

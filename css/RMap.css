@@ -1,0 +1,73 @@
+/* ================================
+    World Resort Map Page Styling
+================================ */
+
+/* Page spacing */
+body {
+    background-color: #0d1117;
+}
+
+/* Page Title */
+h1 {
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Subtitle */
+.lead {
+    color: #b0b8c1;
+}
+
+/* Map */
+
+img{
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(156, 156, 156, 0.45);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+img:hover {
+    box-shadow: 0 12px 35px rgba(244, 244, 244, 0.503);
+    transform: translateY(-4px);
+}
+
+.hover-area {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.263); /* invisible by default */
+}
+ 
+.hover-area:hover {
+    background: rgb(255, 0, 0, 0.3); /* highlight on hover */
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+/* Iframe */
+
+#resortsIframe {
+    display: none;
+    width: 100%;
+    height: 900px;
+    border-radius: 14px;
+    border: none; /* Prevent white outline */
+    background-color: #161b22;
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.519);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#resortsIframe:hover {
+    box-shadow: 0 14px 40px rgba(145, 145, 145, 0.704);
+    transform: translateY(-6px);
+}
+
+/* Title styling */
+#iframeTitle {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+/* Bottom note */
+.text-secondary {
+    font-size: 0.9rem;
+}

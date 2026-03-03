@@ -32,7 +32,7 @@
               <a class="nav-link" href="browse.php">Browse Resorts</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="resortMap.php">Resort Map</a>
+              <a class="nav-link" href="ResortMap.php">Resort Map</a>
             </li>
         </ul>
       </div>

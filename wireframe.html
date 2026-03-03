@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe — World Resort Map</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #eceae5;
+    font-family: 'Courier New', monospace;
+    color: #2a2a2a;
+    padding: 30px 20px 60px;
+  }
+
+  h1.doc-title {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: #888; text-align: center; margin-bottom: 24px;
+  }
+  h1.doc-title span {
+    display: inline-block; padding: 7px 20px; border: 1.5px solid #ccc;
+  }
+
+  .page-wrapper {
+    max-width: 700px;
+    margin: 0 auto 40px;
+    background: #f9f7f4;
+    border: 1.5px solid #ccc;
+    box-shadow: 4px 4px 0 #ccc;
+  }
+
+  .wf-section-label {
+    font-size: 7px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: #bbb; text-align: right; padding: 2px 6px;
+    background: #f0ede8; border-bottom: 1px dashed #ddd;
+  }
+
+  /* NAV */
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 16px; background: #1e1e1e;
+  }
+  .nav-logo { width: 80px; height: 12px; background: #555; border-radius: 1px; }
+  .nav-links { display: flex; gap: 12px; align-items: center; }
+  .nav-link { height: 9px; background: #555; border-radius: 1px; }
+  .nav-link.active { background: #aaa; }
+
+  /* PAGE HEADER */
+  .page-header {
+    text-align: center; padding: 24px 20px 16px;
+    border-bottom: 1px solid #eee;
+  }
+  .header-title {
+    width: 200px; height: 18px; background: #2a2a2a;
+    border-radius: 1px; margin: 0 auto 10px;
+  }
+  .header-sub {
+    width: 240px; height: 9px; background: #ccc;
+    border-radius: 1px; margin: 0 auto;
+  }
+
+  /* MAP AREA */
+  .map-container {
+    margin: 20px 24px;
+    border: 1.5px dashed #bbb;
+    background: #e2ddd8;
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .map-container::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to bottom right, transparent calc(50% - 0.5px), #bbb calc(50% - 0.5px), #bbb calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+      linear-gradient(to top right, transparent calc(50% - 0.5px), #bbb calc(50% - 0.5px), #bbb calc(50% + 0.5px), transparent calc(50% + 0.5px));
+  }
+
+  /* Country blobs */
+  .country {
+    position: absolute;
+    border-radius: 40% 50% 45% 55%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 7px; font-family: 'Courier New', monospace;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: #333; font-weight: bold;
+    border: 1px solid rgba(0,0,0,0.15);
+    cursor: default;
+  }
+
+  .country.active {
+    border: 2px solid #2d6be4;
+    box-shadow: 0 0 0 2px rgba(45,107,228,0.25);
+  }
+
+  /* Annotation callout on map */
+  .map-callout {
+    position: absolute;
+    background: rgba(255,255,255,0.92);
+    border: 1.5px solid #2d6be4;
+    padding: 5px 8px;
+    font-size: 7px; font-family: 'Courier New', monospace;
+    color: #2d6be4; letter-spacing: 0.06em;
+    border-radius: 2px;
+    white-space: nowrap;
+    z-index: 10;
+  }
+
+  .map-callout::before {
+    content: '';
+    position: absolute;
+    width: 20px; height: 1px;
+    background: #2d6be4;
+  }
+
+  /* Map label */
+  .map-photo-note {
+    position: absolute; top: 8px; left: 8px;
+    background: rgba(255,255,255,0.7); border: 1px dashed #aaa;
+    padding: 3px 7px; font-size: 7px; text-transform: uppercase;
+    letter-spacing: 0.1em; color: #888;
+  }
+
+  /* MAP CAPTION */
+  .map-caption {
+    text-align: center; padding: 8px 20px 16px;
+  }
+  .caption-line {
+    width: 320px; height: 7px; background: #ddd;
+    border-radius: 1px; margin: 0 auto;
+  }
+
+  /* FOOTER */
+  .page-footer {
+    background: #1e1e1e; padding: 12px; text-align: center;
+    border-top: 1px solid #333;
+  }
+  .footer-line {
+    width: 120px; height: 8px; background: #444;
+    border-radius: 1px; margin: 0 auto;
+  }
+
+  /* ANNOTATIONS PANEL */
+  .annotation-panel {
+    max-width: 700px; margin: 20px auto 0; padding: 0 4px 40px;
+  }
+  .annotation-title {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em;
+    color: #888; border-bottom: 1px solid #ccc;
+    padding-bottom: 6px; margin-bottom: 12px;
+  }
+  .annotation-list {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px;
+  }
+  .annotation-item { display: flex; gap: 8px; align-items: flex-start; }
+  .annotation-num {
+    width: 18px; height: 18px; min-width: 18px;
+    border: 1.5px solid #999; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; color: #666; margin-top: 1px;
+  }
+  .annotation-text { font-size: 10px; color: #666; line-height: 1.5; }
+  .annotation-text strong { color: #333; display: block; }
+</style>
+</head>
+<body>
+
+<h1 class="doc-title"><span>Wireframe — World Resort Map</span></h1>
+
+<div class="page-wrapper">
+
+  <!-- NAV -->
+  <div class="wf-section-label">① Navigation Bar</div>
+  <div class="nav">
+    <div class="nav-logo"></div>
+    <div class="nav-links">
+      <div class="nav-link" style="width:38px;"></div>
+      <div class="nav-link" style="width:72px;"></div>
+      <div class="nav-link active" style="width:58px;"></div>
+    </div>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <div class="wf-section-label">② Page Header</div>
+  <div class="page-header">
+    <div class="header-title"></div>
+    <div class="header-sub"></div>
+  </div>
+
+  <!-- MAP -->
+  <div class="wf-section-label">③ Interactive SVG World Map</div>
+  <div class="map-container">
+
+    <span style="position:relative;z-index:1;font-size:11px;text-transform:uppercase;letter-spacing:0.14em;color:#999;background:rgba(255,255,255,0.75);padding:6px 14px;font-family:'Courier New',monospace;">Image of Map</span>
+
+  </div>
+
+  <!-- MAP CAPTION -->
+  <div class="wf-section-label">⑤ Caption</div>
+  <div class="map-caption">
+    <div class="caption-line"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="wf-section-label">⑥ Footer</div>
+  <div class="page-footer">
+    <div class="footer-line"></div>
+  </div>
+
+</div>
+
+<!-- ANNOTATIONS -->
+<div class="annotation-panel">
+  <div class="annotation-title">Component Annotations</div>
+  <div class="annotation-list">
+
+    <div class="annotation-item">
+      <div class="annotation-num">①</div>
+      <div class="annotation-text">
+        <strong>Navigation Bar</strong>
+        Dark background. Three links — Home, Browse Resorts, Resort Map (active). Consistent with other pages.
+      </div>
+    </div>
+
+    <div class="annotation-item">
+      <div class="annotation-num">②</div>
+      <div class="annotation-text">
+        <strong>Page Header</strong>
+        Centred heading "World Resort Map" with subtitle "Click a region to see resorts there" as instructional copy.
+      </div>
+    </div>
+
+    <div class="annotation-item">
+      <div class="annotation-num">③</div>
+      <div class="annotation-text">
+        <strong>SVG World Map</strong>
+        Interactive SVG with coloured country/region blobs on a light blue ocean background. Grid lines overlay for map feel.
+      </div>
+    </div>
+
+    <div class="annotation-item">
+      <div class="annotation-num">④</div>
+      <div class="annotation-text">
+        <strong>Clickable Regions</strong>
+        Each country shape is a clickable element. Clicking filters or navigates to resorts in that country/region. Active state shown with blue border highlight.
+      </div>
+    </div>
+
+    <div class="annotation-item">
+      <div class="annotation-num">⑤</div>
+      <div class="annotation-text">
+        <strong>Map Caption</strong>
+        Small disclaimer text below the map: "Map regions are approximate – click to explore resorts by country/region."
+      </div>
+    </div>
+
+    <div class="annotation-item">
+      <div class="annotation-num">⑥</div>
+      <div class="annotation-text">
+        <strong>Footer</strong>
+        Shared GlobalFooter.php — dark background, centred copyright credit. Consistent with all other pages.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

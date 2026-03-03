@@ -2,6 +2,23 @@
 <?php
 include 'Database/ski_db_connect.php';
 ?>
+<!-- This allows the map selection to talk with the  -->
+<?php
+$filter_country = isset($_GET['country']) ? trim($_GET['country']) : '';
+?>
+
+<?php
+// Get country from ?country=
+$country_filter = isset($_GET['country']) ? trim($_GET['country']) : '';
+
+// Sets dynamic title
+$maintitle = "All Ski Resorts";
+if (!empty($country_filter))
+{
+  $maintitle = "Ski Resorts in " . htmlspecialchars($country_filter);
+  // Ski resorts in (country)
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
@@ -17,8 +34,8 @@ include 'Database/ski_db_connect.php';
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary">
     <div class="container">
       <a class="navbar-brand fw-bold" href="index.php">Ski Resorts</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-              data-bs-target="#navbarNav" aria-controls="navbarNav" 
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarNav" aria-controls="navbarNav"
               aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -31,7 +48,7 @@ include 'Database/ski_db_connect.php';
               <a class="nav-link active" aria-current="page" href="browse.php">Browse Resorts</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="resortMap.php">Resort Map</a>
+              <a class="nav-link" href="ResortMap.php">Resort Map</a>
             </li>
         </ul>
       </div>
@@ -40,7 +57,7 @@ include 'Database/ski_db_connect.php';
 
   <!-- Scroll to Top button -->
   <!-- Hidden by default (d-none), shown via JS when passed 300 pixels (veritcal) -->
-  <button id="scrollToTopBtn" 
+  <button id="scrollToTopBtn"
         class="btn btn-primary rounded-circle shadow-lg position-fixed bottom-0 end-0 m-4 d-none"
         style="width: 50px; height: 50px; z-index: 1000; font-size: 1.5rem;"
         aria-label="Back to top">
@@ -51,7 +68,7 @@ include 'Database/ski_db_connect.php';
   <div class="container my-5">
 
     <!-- Page Heading -->
-    <h1 class="text-center mb-5">All Ski Resorts</h1>
+    <h1 class="text-center mb-5"><?= $maintitle ?></h1>
 
     <!-- Filter Controls -->
     <div class="row justify-content-center mb-5">
@@ -93,9 +110,14 @@ include 'Database/ski_db_connect.php';
     <?php
     // SQL query: get all resorts, sorted alphabetically by name
     $sql = "SELECT * FROM resorts ORDER BY resort_name ASC";
+    if (!empty($filter_country)) {
+    // This is logic for the Image-map :)
+      $filter_country = mysqli_real_escape_string($conn, $filter_country);
+      $sql = "SELECT * FROM resorts WHERE country = '$filter_country' ORDER BY resort_name ASC";
+  }
     $result = mysqli_query($conn, $sql);
 
-    if (mysqli_num_rows($result) > 0):
+      if (mysqli_num_rows($result) > 0):
     ?>
       <!-- Responsive Bootstrap grid: 1 col mobile | 2 tablet | 3 desktop -->
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
@@ -104,11 +126,11 @@ include 'Database/ski_db_connect.php';
             <div class="card h-100 shadow">
               <!-- Resort Image -->
               <?php if (!empty($row['image_url'])): ?>
-                <img src="<?= htmlspecialchars($row['image_url']) ?>" 
-                    class="card-img-top" 
+                <img src="<?= htmlspecialchars($row['image_url']) ?>"
+                    class="card-img-top"
                     alt="Ski resort: <?= htmlspecialchars($row['resort_name']) ?>">
               <?php else: ?>
-                <div class="card-img-top bg-dark d-flex align-items-center justify-content-center" 
+                <div class="card-img-top bg-dark d-flex align-items-center justify-content-center"
                     style="height:200px;">
                   <span class="text-muted">No image available</span>
                 </div>
