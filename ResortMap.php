@@ -1,3 +1,4 @@
+<!-- ResortMap.php -->
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
@@ -6,30 +7,23 @@
   <title>World Resort Map</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
+  <!--Bootstrap Icons-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <!-- Styles Sheet -->
   <link rel="stylesheet" href="css/GStyles.css">
-  <link rel="styleshet" href="css/RMap.css">
-  <link rel="icon" type="image/png" href="logo/hm.png">  <!-- image/x-icon for .ico files -->
-
-  <!-- Added: Basic styles for iframe and dynamic title -->
-  <style>
-    #resortsIframe {
-      display: none;           /* Hidden until first click */
-      width: 100%;
-      height: 700px;           /* Adjust as needed */
-      border: none;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    }
-    #iframeTitle {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
-  </style>
+  <link rel="stylesheet" href="css/RMap.css">
+  <link rel="icon" type="image/png" href="Assets/hm.png">  <!-- image/x-icon for .ico files -->
 </head>
 <body>
-
-<!-- Navbar (unchanged) -->
+  <!-- Scroll to Top button -->
+  <!-- Hidden by default (d-none), shown via JS when passed 300 pixels (veritcal) -->
+  <button id="scrollToTopBtn"
+        class="btn btn-primary rounded-circle shadow-lg position-fixed bottom-0 end-0 m-4 d-none"
+        style="width: 50px; height: 50px; z-index: 1000; font-size: 1.5rem;"
+        aria-label="Back to top">
+  <i class="bi bi-arrow-up"></i>
+</button>
+<!-- Navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary">
   <div class="container">
     <a class="navbar-brand fw-bold" href="index.php">Ski Resorts</a>
@@ -54,49 +48,66 @@
   </div>
 </nav>
 
-<div class="container my-5">
+<div class="container my-5" id="MapContainer">
   <h1 class="text-center mb-4">World Resort Map</h1>
   <p class="lead text-center mb-5">Click a region to see resorts there</p>
 
   <div class="text-center mb-5">
-    <img src="logo/Map.png" usemap="#resortmap" class="img-fluid shadow" alt="World ski resort map">
+    <img id="resortmapimage" src="Assets/Map.png" usemap="#resortmap" class="img-fluid" alt="World ski resort map">
 
     <map name="resortmap">
       <!-- USA -->
-      <area target="" alt="USA" title="USA" 
+      <area class="Country-Area"
+            target="" alt="USA" title="USA" 
             href="#" 
             onclick="loadResorts('USA'); return false;" 
-            coords="447,601,40" shape="circle">
+            coords="447,601,40" shape="circle"
+            onmouseover="forceMapHover(true)" 
+            onmouseout="forceMapHover(false)"> <!-- These allow my "pin" effects to work-->
       
       <!-- Canada -->
-      <area target="" alt="Canada" title="Canada" 
+      <area class="Country-Area"
+            target="" alt="Canada" title="Canada" 
             href="#" 
             onclick="loadResorts('Canada'); return false;" 
-            coords="337,435,40" shape="circle">
+            coords="337,435,40" shape="circle"
+            onmouseover="forceMapHover(true)" 
+            onmouseout="forceMapHover(false)">
       
       <!-- France -->
-      <area target="" alt="France" title="France" 
+      <area class="Country-Area"
+            target="" alt="France" title="France" 
             href="#" 
             onclick="loadResorts('France'); return false;" 
-            coords="926,505,40" shape="circle">
+            coords="926,505,40" shape="circle"
+            onmouseover="forceMapHover(true)" 
+            onmouseout="forceMapHover(false)">
       
       <!-- Switzerland -->
-      <area target="" alt="Switzerland" title="Switzerland" 
+      <area class="Country-Area"
+            target="" alt="Switzerland" title="Switzerland" 
             href="#" 
             onclick="loadResorts('Switzerland'); return false;" 
-            coords="995,503,40" shape="circle">
+            coords="995,503,40" shape="circle"
+            onmouseover="forceMapHover(true)" 
+            onmouseout="forceMapHover(false)">
       
       <!-- Austria -->
-      <area target="" alt="Austria" title="Austria" 
+      <area class="Country-Area"
+            target="" alt="Austria" title="Austria" 
             href="#" 
             onclick="loadResorts('Austria'); return false;" 
-            coords="1051,503,40" shape="circle">
+            coords="1051,503,40" shape="circle"
+            onmouseover="forceMapHover(true)" 
+            onmouseout="forceMapHover(false)">
       
       <!-- Japan -->
       <area target="" alt="Japan" title="Japan" 
             href="#" 
             onclick="loadResorts('Japan'); return false;" 
-            coords="1615,590,40" shape="circle">
+            coords="1615,590,40" shape="circle"
+            onmouseover="forceMapHover(true)" 
+            onmouseout="forceMapHover(false)">
     </map>
   </div>
 
@@ -110,7 +121,7 @@
             frameborder="0" 
             class="border shadow rounded"
             title="Filtered resorts list">
-      <!-- Fallback content if iframe not supported -->
+<!--Warning for unsuported Browsers-->
       <p>Your browser does not support iframes. <a href="browse.php">View all resorts</a></p>
     </iframe>
   </div>
@@ -131,7 +142,7 @@
 
 <!-- Script to update Iframe -->
 <script>
-function loadResorts(country)
+  function loadResorts(country)
 {
     const iframe = document.getElementById('resortsIframe');
     const title = document.getElementById('iframeTitle');
@@ -142,9 +153,23 @@ function loadResorts(country)
     iframe.src = "browse.php?country=" + encodeURIComponent(country);
     
     iframe.scrollIntoView({ behavior: 'smooth' });
-}</script>
+}
+</script>
+<!-- Script to ensure map doesn't loose effects when hovering over pins -->
+<script>
+function forceMapHover(isHovering) {
+    const mapImage = document.getElementById('resortmapimage');
+    if (mapImage) {
+        if (isHovering) {
+            mapImage.classList.add('map-hover');
+        } else {
+            mapImage.classList.remove('map-hover');
+        }
+    }
+}
+</script>
 <!-- Scroll to Top script -->
-<script> src="js/ScrollToTop.js" </script>
+<script src="js/ScrollToTop.js" ></script>
 
 <?php include_once 'Footer/GlobalFooter.php' ?>
 </body>

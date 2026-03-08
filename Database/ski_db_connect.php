@@ -1,7 +1,7 @@
 <?php
 $server = "localhost";
-$user   = "root";           
-$pass   = "";               
+$user   = "root";
+$pass   = "";
 $dbname = "skiing_db"; // don't touch
 
 $conn = mysqli_connect($server, $user, $pass, $dbname);
