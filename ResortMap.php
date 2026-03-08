@@ -102,7 +102,8 @@
             onmouseout="forceMapHover(false)">
       
       <!-- Japan -->
-      <area target="" alt="Japan" title="Japan" 
+      <area class="Country-Area"
+            target="" alt="Japan" title="Japan" 
             href="#" 
             onclick="loadResorts('Japan'); return false;" 
             coords="1615,590,40" shape="circle"
