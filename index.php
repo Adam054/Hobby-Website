@@ -18,8 +18,8 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary">
     <div class="container">
       <a class="navbar-brand fw-bold" href="index.php">Ski Resorts</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-              data-bs-target="#navbarNav" aria-controls="navbarNav" 
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarNav" aria-controls="navbarNav"
               aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -41,7 +41,7 @@
 
   <!-- Scroll-to-Top Button -->
   <!-- Hidden by default (d-none), shown via JS when user scrolls down -->
-  <button id="scrollToTopBtn" 
+  <button id="scrollToTopBtn"
           class="btn btn-primary rounded-circle shadow-lg position-fixed bottom-0 end-0 m-4 d-none"
           style="width: 50px; height: 50px; z-index: 1000; font-size: 1.5rem;"
           aria-label="Scroll back to top of page">
@@ -53,7 +53,22 @@
     <div class="container">
       <h1 class="display-4 fw-bold text-white mb-3">Discover the World's Best Ski Resorts</h1>
       <p class="lead text-white-75 mb-4">Explore epic slopes, deep powder, and unforgettable mountain experiences</p>
-      <a href="browse.php" class="btn btn-primary btn-lg px-5">Browse Resorts</a>
+      
+      <div class="btn-wrapper">
+        <a href="browse.php" id="btnBrowse" class="btn btn-primary btn-lg px-5">
+          <span class="btn-text">Browse Resorts</span>
+        </a>
+        <div class="bashercontainer">
+          <img src="Assets/svg/piestbasherhm.svg" class="basher-anim" alt="piest-basher" width="38" height="38">
+        </div>
+      </div>
+
+      <div class="btn-wrapper">
+        <a href="ResortMap.php" id="btnMap" class="btn btn-primary btn-lg px-5">
+        <span class="btn-text">Resort Map</span>
+        </a>
+        <img src="Assets/svg/plane.svg" class="plane-anim" alt="plane" width="28" height="28">
+      </div>
     </div>
   </div>
 
@@ -71,29 +86,49 @@
             <p>
               I created this as part of my <strong>Web Technologies & Applications Assignment</strong>. 
               The project was to build a simple, responsive web app that lets visitors explore a collection 
-              of 10 items in this case ski resorts, from a real database that i made, all without any user input or editing.
+              of 10 ski resorts from a real MySQL database, all without any user input or editing.
             </p>
-            <p>
-              Key features:
-            </p>
+            <p>Key features:</p>
             <ul class="list-group list-group-flush mb-4">
+
               <li class="list-group-item bg-dark text-light border-secondary">
-                <strong>Home page</strong> — This page introduces the site, and my project of making a Hobby Website, The Hobby i choose is skiing.
+                <strong>Home page</strong>: Introduces the site and my skiing hobby.
+                Features two animated hero buttons, a piste basher that drives across and
+                pushes the text away, and a plane that flies across the button. Both Activated on Hover.
               </li>
+
               <li class="list-group-item bg-dark text-light border-secondary">
-                <strong>Browse page</strong> — displays 10 ski resorts pulled dynamically from a MySQL database using PHP (Ultimately XAMPP)
+                <strong>Browse page</strong>: Displays 10 ski resorts pulled dynamically
+                from a MySQL database using PHP and XAMPP. Supports filtering by Country,
+                Snowfall, Elevation, and Author's Favourite, with a dynamic page heading
+                that updates to match the active filter.
               </li>
+
               <li class="list-group-item bg-dark text-light border-secondary">
-                <strong>Responsive design</strong> — This website used Bootstrap 5.3.3, This allows the site to be scaled for Phones, Tablets and Desktops.
+                <strong>Resort Map page</strong>: An interactive image map letting users
+                click a country region to load filtered resorts inside an iframe. Hovering
+                over a country pin triggers a green glow effect on the map, solved using a
+                JavaScript <code>forceMapHover()</code> function to work around a CSS
+                limitation with <code>&lt;area&gt;</code> tags.
               </li>
+
               <li class="list-group-item bg-dark text-light border-secondary">
-                <strong>Client-side extras</strong> — I used Vanilla Javascript for Filtering by Country, Favourites, Snowfall or Elevation and for the return-to-top button. 
-                Now you can also enjoy the dynamic Heading, Synced with the Filter!.
+                <strong>Responsive design</strong>: Built with Bootstrap 5.3.3, scaling
+                cleanly across phones, tablets, and desktops. Card layouts shift from 1 to
+                2 to 3 columns depending on screen width.
               </li>
+
+              <li class="list-group-item bg-dark text-light border-secondary">
+                <strong>Client-side extras</strong>: Vanilla JavaScript powers the filter
+                system, scroll-to-top button, hero button animations, and the map iframe
+                loader. Animation timers use <code>clearTimeout</code> to handle rapid
+                hover events cleanly.
+              </li>
+
             </ul>
             <p class="text-center text-secondary">
               Technologies used: HTML5, CSS3, Bootstrap 5, PHP, MySQL, vanilla JavaScript.<br>
-              All content is read-only — no login, no forms, just exploration.
+              All content is read-only - no login or forms.
             </p>
           </div>
         </div>
@@ -155,6 +190,6 @@
   <!-- external JS files -->
   <!-- ScrollToTop.js shows/hides and handles the floating arrow button -->
   <script src="js/ScrollToTop.js"></script>
-  <div class="bottom-fade" id="bottomFade"></div>
+<script src="js/Animations.js"></script>
 </body>
 </html>

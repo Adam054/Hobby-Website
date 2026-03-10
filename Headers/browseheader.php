@@ -8,7 +8,7 @@
   <!-- Page title -->
   <title>Browse Ski Resorts</title>
   <!-- Favicon (ICON) -->
-  <link rel="icon" type="image/png" href="logo/hm.png">  <!-- image/x-icon for .ico files -->
+  <link rel="icon" type="image/png" href="Assets/hm.png">  <!-- image/x-icon for .ico files -->
 
   <!-- Bootstrap 5.3.3 CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"

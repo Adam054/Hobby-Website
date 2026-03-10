@@ -1,3 +1,4 @@
+<!-- ResortMap.php -->
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
@@ -6,13 +7,22 @@
   <title>World Resort Map</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
+  <!--Bootstrap Icons-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <!-- Styles Sheet -->
   <link rel="stylesheet" href="css/GStyles.css">
   <link rel="stylesheet" href="css/RMap.css">
-  <link rel="icon" type="image/png" href="logo/hm.png">  <!-- image/x-icon for .ico files -->
+  <link rel="icon" type="image/png" href="Assets/hm.png">  <!-- image/x-icon for .ico files -->
 </head>
 <body>
-
+  <!-- Scroll to Top button -->
+  <!-- Hidden by default (d-none), shown via JS when passed 300 pixels (veritcal) -->
+  <button id="scrollToTopBtn"
+        class="btn btn-primary rounded-circle shadow-lg position-fixed bottom-0 end-0 m-4 d-none"
+        style="width: 50px; height: 50px; z-index: 1000; font-size: 1.5rem;"
+        aria-label="Back to top">
+  <i class="bi bi-arrow-up"></i>
+</button>
 <!-- Navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary">
   <div class="container">
@@ -43,7 +53,7 @@
   <p class="lead text-center mb-5">Click a region to see resorts there</p>
 
   <div class="text-center mb-5">
-    <img id="resortmapimage" src="logo/Map.png" usemap="#resortmap" class="img-fluid" alt="World ski resort map">
+    <img id="resortmapimage" src="Assets/Map.png" usemap="#resortmap" class="img-fluid" alt="World ski resort map">
 
     <map name="resortmap">
       <!-- USA -->
@@ -51,41 +61,54 @@
             target="" alt="USA" title="USA" 
             href="#" 
             onclick="loadResorts('USA'); return false;" 
-            coords="447,601,40" shape="circle" class="hotspot USA">
+            coords="447,601,40" shape="circle"
+            onmouseover="forceMapHover(true)" 
+            onmouseout="forceMapHover(false)"> <!-- These allow my "pin" effects to work-->
       
       <!-- Canada -->
       <area class="Country-Area"
             target="" alt="Canada" title="Canada" 
             href="#" 
             onclick="loadResorts('Canada'); return false;" 
-            coords="337,435,40" shape="circle">
+            coords="337,435,40" shape="circle"
+            onmouseover="forceMapHover(true)" 
+            onmouseout="forceMapHover(false)">
       
       <!-- France -->
       <area class="Country-Area"
             target="" alt="France" title="France" 
             href="#" 
             onclick="loadResorts('France'); return false;" 
-            coords="926,505,40" shape="circle">
+            coords="926,505,40" shape="circle"
+            onmouseover="forceMapHover(true)" 
+            onmouseout="forceMapHover(false)">
       
       <!-- Switzerland -->
       <area class="Country-Area"
             target="" alt="Switzerland" title="Switzerland" 
             href="#" 
             onclick="loadResorts('Switzerland'); return false;" 
-            coords="995,503,40" shape="circle">
+            coords="995,503,40" shape="circle"
+            onmouseover="forceMapHover(true)" 
+            onmouseout="forceMapHover(false)">
       
       <!-- Austria -->
       <area class="Country-Area"
             target="" alt="Austria" title="Austria" 
             href="#" 
             onclick="loadResorts('Austria'); return false;" 
-            coords="1051,503,40" shape="circle">
+            coords="1051,503,40" shape="circle"
+            onmouseover="forceMapHover(true)" 
+            onmouseout="forceMapHover(false)">
       
       <!-- Japan -->
-      <area target="" alt="Japan" title="Japan" 
+      <area class="Country-Area"
+            target="" alt="Japan" title="Japan" 
             href="#" 
             onclick="loadResorts('Japan'); return false;" 
-            coords="1615,590,40" shape="circle" onMouseOver="Pinffect" data-country="Japan">
+            coords="1615,590,40" shape="circle"
+            onmouseover="forceMapHover(true)" 
+            onmouseout="forceMapHover(false)">
     </map>
   </div>
 
@@ -120,7 +143,7 @@
 
 <!-- Script to update Iframe -->
 <script>
-function loadResorts(country)
+  function loadResorts(country)
 {
     const iframe = document.getElementById('resortsIframe');
     const title = document.getElementById('iframeTitle');
@@ -133,24 +156,21 @@ function loadResorts(country)
     iframe.scrollIntoView({ behavior: 'smooth' });
 }
 </script>
-<!-- This script is to make hovering over the "pins" possible -->
+<!-- Script to ensure map doesn't loose effects when hovering over pins -->
 <script>
- const map = document.getElementById("resortmap");
-
-map.addEventListener("mouseover", function(e) {
-    if (e.target.classList.contains("country-area")) {
-        pin.classList.add("hover-effect");
+function forceMapHover(isHovering) {
+    const mapImage = document.getElementById('resortmapimage');
+    if (mapImage) {
+        if (isHovering) {
+            mapImage.classList.add('map-hover');
+        } else {
+            mapImage.classList.remove('map-hover');
+        }
     }
-});
-
-map.addEventListener("mouseout", function(e) {
-    if (e.target.classList.contains("country-area")) {
-        pin.classList.remove("hover-effect");
-    }
-});
+}
 </script>
 <!-- Scroll to Top script -->
-<script> src="js/ScrollToTop.js" </script>
+<script src="js/ScrollToTop.js" ></script>
 
 <?php include_once 'Footer/GlobalFooter.php' ?>
 </body>

@@ -9,7 +9,7 @@
   <title>My Ski Resorts – Home</title>
   
   <!-- Favicon (ICON) -->                   <!--   Reminder: If I want to switch back to Icons:  -->
-  <link rel="icon" type="image/png" href="logo/hm.png"> <!-- image/x-icon for .ico files -->
+  <link rel="icon" type="image/png" href="Assets/hm.png"> <!-- image/x-icon for .ico files -->
 
   <!-- Bootstrap 5.3.3 CSS CDN for layout, components, and dark theme support -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
