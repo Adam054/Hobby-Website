@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () =>
         {
             document.querySelectorAll('.card').forEach(card => 
             {
-                card.parentElement.style.display = 'block';
+                card.closest('.col').style.display = 'block';
             });
             return;
         }
@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () =>
                     console.warn('No Evelvation Data Found?'); // Debug Code
                 }
             }
-            card.parentElement.style.display = show ? 'block' : 'none';
+            card.closest('.col').style.display = show ? 'block' : 'none';
             
         });     
     });

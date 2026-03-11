@@ -110,8 +110,6 @@ if (!empty($country_filter))
     <?php
     // SQL query: get all resorts, sorted alphabetically by name
     $sql = "SELECT * FROM resorts ORDER BY resort_name ASC";
-
-    // Filter by Country if Selected 
     if (!empty($filter_country)) {
     // This is logic for the Image-map :)
       $filter_country = mysqli_real_escape_string($conn, $filter_country);
@@ -119,23 +117,20 @@ if (!empty($country_filter))
   }
     $result = mysqli_query($conn, $sql);
 
-    //Checks if Rows Exist
-    if (mysqli_num_rows($result) > 0):
+      if (mysqli_num_rows($result) > 0):
     ?>
-      <!--Bootstrap Grid Layout-->
+      <!-- Responsive Bootstrap grid: 1 col mobile | 2 tablet | 3 desktop -->
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        <!--Loops resorts-->
         <?php while ($row = mysqli_fetch_assoc($result)): ?>
           <div class="col">
+          <a href="resort.php?id=<?= $row['id'] ?>" class="text-decoration-none">
             <div class="card h-100 shadow">
-              <!--Check for Resort Image -->
+              <!-- Resort Image -->
               <?php if (!empty($row['image_url'])): ?>
-              <!--Display Resort Image -->
                 <img src="<?= htmlspecialchars($row['image_url']) ?>"
                     class="card-img-top"
                     alt="Ski resort: <?= htmlspecialchars($row['resort_name']) ?>">
               <?php else: ?>
-                <!--Image Placeholder-->
                 <div class="card-img-top bg-dark d-flex align-items-center justify-content-center"
                     style="height:200px;">
                   <span class="text-muted">No image available</span>
@@ -144,22 +139,23 @@ if (!empty($country_filter))
 
               <!-- Card Content -->
               <div class="card-body">
-                <h5 class="card-title"><?= htmlspecialchars($row['resort_name']) ?></h5> <!--Resort Name-->
+                <h5 class="card-title"><?= htmlspecialchars($row['resort_name']) ?></h5>
                 <p class="card-text text-secondary mb-1">
-                  <strong>Country:</strong> <?= htmlspecialchars($row['country']) ?> <!--Country-->
+                  <strong>Country:</strong> <?= htmlspecialchars($row['country']) ?>
                 </p>
                 <p class="card-text text-secondary mb-1">
-                  <strong>Elevation:</strong> <?= number_format($row['elevation_m']) ?> m <!--Elevation-->
+                  <strong>Elevation:</strong> <?= number_format($row['elevation_m']) ?> m
                 </p>
                 <p class="card-text text-secondary mb-1">
-                  <strong>Piste:</strong> <?= number_format($row['piste_km']) ?> km <!--Piste-->
+                  <strong>Piste:</strong> <?= number_format($row['piste_km']) ?> km
                 </p>
                 <p class="card-text text-secondary mb-2">
-                  <strong>Avg Snowfall:</strong> <?= number_format($row['avg_snowfall_cm']) ?> cm <!--Avg. Snowfall-->
+                  <strong>Avg Snowfall:</strong> <?= number_format($row['avg_snowfall_cm']) ?> cm
                 </p>
-                <p class="card-text"><?= htmlspecialchars($row['description']) ?></p> <!--Description -->
+                <p class="card-text"><?= htmlspecialchars($row['description']) ?></p>
               </div>
             </div>
+          </a>
           </div>
         <?php endwhile; ?>
       </div>
