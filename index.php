@@ -59,7 +59,7 @@
           <span class="btn-text">Browse Resorts</span>
         </a>
         <div class="bashercontainer">
-          <img src="Assets/svg/piestbasherhm.svg" class="basher-anim" alt="piest-basher" width="34" height="34">
+          <img src="Assets/svg/piestbasherhm.svg" class="basher-anim" alt="piest-basher" width="38" height="38">
         </div>
       </div>
 
@@ -78,7 +78,7 @@
     <div class="row justify-content-center">
       <div class="col-lg-10">
         <div class="card shadow border-secondary">
-          <div class="card-body p-5">
+          <div class="card-body p-5" id="AboutSite">
             <h2 class="card-title text-center mb-4">About This Site</h2>
             <p class="lead text-center mb-4">
               Welcome! This is my personal read-only hobby website about <strong>ski resorts around the world</strong>.
@@ -141,7 +141,7 @@
     <div class="row g-4 text-center">
       <div class="col-md-4">
         <div class="card h-100 shadow">
-          <div class="card-body">
+          <div class="card-body" id="AboutSite">
             <h5 class="card-title">Best Snow?</h5>
             <p class="card-text text-secondary">
               Experience legendary deep powder in Japan, Canada, and the Alps.
@@ -151,7 +151,7 @@
       </div>
       <div class="col-md-4">
         <div class="card h-100 shadow">
-          <div class="card-body">
+          <div class="card-body" id="AboutSite">
             <h5 class="card-title">Highest Altitude?</h5>
             <p class="card-text text-secondary">
               Ski above 3000 m with breathtaking views and reliable snow.
@@ -161,7 +161,7 @@
       </div>
       <div class="col-md-4">
         <div class="card h-100 shadow">
-          <div class="card-body">
+          <div class="card-body" id="AboutSite">
             <h5 class="card-title">Pinnacle of Varied Terrain?</h5>
             <p class="card-text text-secondary">
               From beginner friendly blues to expert pistes (Black runs) and off-piste skiing available.

@@ -3,270 +3,675 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wireframe — World Resort Map</title>
+<title>Ski Resorts – Wireframe</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: #eceae5;
+    background: #f0ece8;
     font-family: 'Courier New', monospace;
-    color: #2a2a2a;
-    padding: 30px 20px 60px;
+    color: #1a1a1a;
+    padding: 40px 20px;
   }
 
   h1.doc-title {
-    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
-    color: #888; text-align: center; margin-bottom: 24px;
-  }
-  h1.doc-title span {
-    display: inline-block; padding: 7px 20px; border: 1.5px solid #ccc;
-  }
-
-  .page-wrapper {
-    max-width: 700px;
-    margin: 0 auto 40px;
-    background: #f9f7f4;
-    border: 1.5px solid #ccc;
-    box-shadow: 4px 4px 0 #ccc;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 32px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ccc;
   }
 
-  .wf-section-label {
-    font-size: 7px; text-transform: uppercase; letter-spacing: 0.1em;
-    color: #bbb; text-align: right; padding: 2px 6px;
-    background: #f0ede8; border-bottom: 1px dashed #ddd;
-  }
-
-  /* NAV */
-  .nav {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 10px 16px; background: #1e1e1e;
-  }
-  .nav-logo { width: 80px; height: 12px; background: #555; border-radius: 1px; }
-  .nav-links { display: flex; gap: 12px; align-items: center; }
-  .nav-link { height: 9px; background: #555; border-radius: 1px; }
-  .nav-link.active { background: #aaa; }
-
-  /* PAGE HEADER */
-  .page-header {
-    text-align: center; padding: 24px 20px 16px;
-    border-bottom: 1px solid #eee;
-  }
-  .header-title {
-    width: 200px; height: 18px; background: #2a2a2a;
-    border-radius: 1px; margin: 0 auto 10px;
-  }
-  .header-sub {
-    width: 240px; height: 9px; background: #ccc;
-    border-radius: 1px; margin: 0 auto;
-  }
-
-  /* MAP AREA */
-  .map-container {
-    margin: 20px 24px;
-    border: 1.5px dashed #bbb;
-    background: #e2ddd8;
+  /* PAGE FRAME */
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #fff;
+    border: 2px solid #1a1a1a;
     position: relative;
-    height: 320px;
+  }
+
+  /* ANNOTATIONS */
+  .annotation {
+    position: absolute;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #e74c3c;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .annotation::before {
+    content: '→ ';
+  }
+  .annotation.left {
+    right: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: right;
+  }
+  .annotation.left::before { content: ''; }
+  .annotation.left::after { content: ' ←'; }
+  .annotation.right {
+    left: calc(100% + 10px);
+  }
+  .annotation.top {
+    bottom: calc(100% + 6px);
+    left: 0;
+  }
+
+  /* ───── NAVBAR ───── */
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 18px;
+    border-bottom: 1px solid #1a1a1a;
+    background: #1a1a1a;
+    position: relative;
+  }
+  .navbar .brand {
+    background: #fff;
+    width: 100px;
+    height: 14px;
+    border-radius: 2px;
+  }
+  .navbar .nav-links {
+    display: flex;
+    gap: 14px;
+  }
+  .navbar .nav-link {
+    background: #555;
+    width: 60px;
+    height: 10px;
+    border-radius: 2px;
+  }
+  .navbar .nav-link.active {
+    background: #e74c3c;
+  }
+
+  /* ───── HERO BANNER ───── */
+  .hero-banner {
+    margin: 16px auto;
+    width: 70%;
+    border: 1.5px solid #1a1a1a;
+    padding: 12px 16px;
+    text-align: center;
+    position: relative;
+  }
+  .hero-banner .banner-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .banner-key {
+    border: 1.5px solid #1a1a1a;
+    padding: 2px 6px;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  .hero-banner .banner-sub {
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: #888;
+    text-transform: uppercase;
+  }
+
+  /* ───── MAP SECTION ───── */
+  .map-section {
+    margin: 0 16px 16px;
+    border: 1.5px solid #1a1a1a;
+    position: relative;
+    background: #e8e4e0;
+    height: 280px;
     overflow: hidden;
+  }
+
+  .map-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* World map outline via SVG */
+  .map-svg {
+    width: 85%;
+    opacity: 0.35;
+  }
+
+  /* Region pins */
+  .pin-group {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+  }
+  .pin {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .pin-dot {
+    width: 22px;
+    height: 22px;
+    background: #e74c3c;
+    border: 2px solid #1a1a1a;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
     display: flex;
     align-items: center;
     justify-content: center;
   }
-
-  .map-container::before {
-    content: '';
-    position: absolute; inset: 0;
-    background:
-      linear-gradient(to bottom right, transparent calc(50% - 0.5px), #bbb calc(50% - 0.5px), #bbb calc(50% + 0.5px), transparent calc(50% + 0.5px)),
-      linear-gradient(to top right, transparent calc(50% - 0.5px), #bbb calc(50% - 0.5px), #bbb calc(50% + 0.5px), transparent calc(50% + 0.5px));
+  .pin-label {
+    transform: rotate(45deg);
+    font-size: 7px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.5px;
+  }
+  .pin-tail {
+    width: 2px;
+    height: 8px;
+    background: #e74c3c;
   }
 
-  /* Country blobs */
-  .country {
+  .map-credit {
     position: absolute;
-    border-radius: 40% 50% 45% 55%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 7px; font-family: 'Courier New', monospace;
-    text-transform: uppercase; letter-spacing: 0.08em;
-    color: #333; font-weight: bold;
-    border: 1px solid rgba(0,0,0,0.15);
-    cursor: default;
+    bottom: 8px;
+    right: 12px;
+    font-size: 7px;
+    color: #aaa;
+    letter-spacing: 1px;
+    font-style: italic;
   }
 
-  .country.active {
-    border: 2px solid #2d6be4;
-    box-shadow: 0 0 0 2px rgba(45,107,228,0.25);
-  }
-
-  /* Annotation callout on map */
-  .map-callout {
+  .map-section-label {
     position: absolute;
-    background: rgba(255,255,255,0.92);
-    border: 1.5px solid #2d6be4;
-    padding: 5px 8px;
-    font-size: 7px; font-family: 'Courier New', monospace;
-    color: #2d6be4; letter-spacing: 0.06em;
+    top: 8px;
+    left: 12px;
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #888;
+    border: 1px solid #ccc;
+    padding: 2px 6px;
+    background: #fff;
+  }
+
+  /* ───── SECTION DIVIDER ───── */
+  .section-divider {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #e74c3c;
+    border-top: 1px dashed #ccc;
+    border-bottom: 1px dashed #ccc;
+    margin: 0 16px;
+    position: relative;
+  }
+
+  /* ───── IFRAME REGION ───── */
+  .iframe-region {
+    margin: 12px 16px 16px;
+    border: 2px dashed #1a1a1a;
+    position: relative;
+    background: #f8f5f2;
+  }
+
+  .iframe-label {
+    position: absolute;
+    top: -10px;
+    left: 12px;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 8px;
+    letter-spacing: 2px;
+    padding: 2px 8px;
+    text-transform: uppercase;
+  }
+
+  /* INNER IFRAME NAVBAR */
+  .iframe-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px;
+    border-bottom: 1px solid #ccc;
+    background: #1a1a1a;
+  }
+  .iframe-navbar .brand {
+    background: #fff;
+    width: 80px;
+    height: 10px;
     border-radius: 2px;
-    white-space: nowrap;
-    z-index: 10;
+  }
+  .iframe-navbar .nav-links {
+    display: flex;
+    gap: 10px;
+  }
+  .iframe-navbar .nav-link {
+    background: #555;
+    width: 50px;
+    height: 8px;
+    border-radius: 2px;
+  }
+  .iframe-navbar .nav-link.active {
+    background: #e74c3c;
   }
 
-  .map-callout::before {
-    content: '';
+  /* IFRAME CONTENT */
+  .iframe-content {
+    padding: 20px 24px;
+  }
+
+  .iframe-page-title {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  /* Filter bar */
+  .filter-bar {
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .filter-label {
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 4px;
+  }
+  .filter-dropdown {
+    border: 1.5px solid #1a1a1a;
+    padding: 6px 10px;
+    width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 9px;
+    letter-spacing: 1px;
+    background: #fff;
+  }
+  .filter-dropdown .flag-box {
+    width: 14px;
+    height: 10px;
+    background: #ddd;
+    border: 1px solid #bbb;
+    margin-right: 6px;
+    flex-shrink: 0;
+  }
+  .filter-dropdown .chevron {
+    font-size: 8px;
+    color: #888;
+  }
+
+  /* Resort cards grid */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .resort-card {
+    border: 1.5px solid #1a1a1a;
+    background: #fff;
+    position: relative;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 80px;
+    background: #d0ccc8;
+    border-bottom: 1.5px solid #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-image-lines {
     position: absolute;
-    width: 20px; height: 1px;
-    background: #2d6be4;
+    width: 100%; height: 100%;
+    top: 0; left: 0;
   }
 
-  /* Map label */
-  .map-photo-note {
-    position: absolute; top: 8px; left: 8px;
-    background: rgba(255,255,255,0.7); border: 1px dashed #aaa;
-    padding: 3px 7px; font-size: 7px; text-transform: uppercase;
-    letter-spacing: 0.1em; color: #888;
+  .card-image-label {
+    font-size: 7px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #999;
+    z-index: 1;
   }
 
-  /* MAP CAPTION */
-  .map-caption {
-    text-align: center; padding: 8px 20px 16px;
-  }
-  .caption-line {
-    width: 320px; height: 7px; background: #ddd;
-    border-radius: 1px; margin: 0 auto;
+  .card-body {
+    padding: 10px 10px 12px;
   }
 
-  /* FOOTER */
-  .page-footer {
-    background: #1e1e1e; padding: 12px; text-align: center;
-    border-top: 1px solid #333;
-  }
-  .footer-line {
-    width: 120px; height: 8px; background: #444;
-    border-radius: 1px; margin: 0 auto;
+  .card-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 4px;
   }
 
-  /* ANNOTATIONS PANEL */
-  .annotation-panel {
-    max-width: 700px; margin: 20px auto 0; padding: 0 4px 40px;
+  .card-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-bottom: 8px;
   }
-  .annotation-title {
-    font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em;
-    color: #888; border-bottom: 1px solid #ccc;
-    padding-bottom: 6px; margin-bottom: 12px;
+
+  .meta-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
   }
-  .annotation-list {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px;
+  .meta-key {
+    width: 50px;
+    height: 6px;
+    background: #e74c3c;
+    border-radius: 1px;
+    flex-shrink: 0;
   }
-  .annotation-item { display: flex; gap: 8px; align-items: flex-start; }
-  .annotation-num {
-    width: 18px; height: 18px; min-width: 18px;
-    border: 1.5px solid #999; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 9px; color: #666; margin-top: 1px;
+  .meta-val {
+    height: 6px;
+    background: #ccc;
+    border-radius: 1px;
+    flex: 1;
   }
-  .annotation-text { font-size: 10px; color: #666; line-height: 1.5; }
-  .annotation-text strong { color: #333; display: block; }
+
+  .card-desc {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .desc-line {
+    height: 5px;
+    background: #e0dcda;
+    border-radius: 1px;
+  }
+  .desc-line:last-child { width: 70%; }
+
+  /* Iframe footer */
+  .iframe-footer {
+    border-top: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+    font-size: 7px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #aaa;
+    background: #1a1a1a;
+    color: #666;
+  }
+
+  /* ───── LEGEND ───── */
+  .legend {
+    max-width: 720px;
+    margin: 24px auto 0;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 16px 20px;
+    border: 1px solid #ccc;
+    background: #fff;
+  }
+
+  .legend h3 {
+    width: 100%;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 6px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #444;
+  }
+  .legend-swatch {
+    width: 20px;
+    height: 14px;
+    border: 1.5px solid #1a1a1a;
+    flex-shrink: 0;
+  }
+  .swatch-solid { background: #1a1a1a; }
+  .swatch-light { background: #e8e4e0; }
+  .swatch-dashed { background: #fff; border-style: dashed; }
+  .swatch-red { background: #e74c3c; }
+  .swatch-iframe { background: #f8f5f2; border-style: dashed; border-width: 2px; }
 </style>
 </head>
 <body>
 
-<h1 class="doc-title"><span>Wireframe — World Resort Map</span></h1>
+<h1 class="doc-title">Resort Map.php - Wireframe ¬ Haydn Maguire</h1>
 
-<div class="page-wrapper">
+<!-- ════════════════════════════════ -->
+<!--           PAGE FRAME            -->
+<!-- ════════════════════════════════ -->
+<div class="page">
 
-  <!-- NAV -->
-  <div class="wf-section-label">① Navigation Bar</div>
-  <div class="nav">
-    <div class="nav-logo"></div>
+  <!-- NAVBAR -->
+  <div class="navbar" style="position:relative;">
+    <span class="annotation right" style="color:#e74c3c;font-size:8px;position:absolute;left:calc(100% + 10px);top:50%;transform:translateY(-50%);">→ Navbar / Logo + Nav Links</span>
+    <div class="brand"></div>
     <div class="nav-links">
-      <div class="nav-link" style="width:38px;"></div>
-      <div class="nav-link" style="width:72px;"></div>
-      <div class="nav-link active" style="width:58px;"></div>
+      <div class="nav-link"></div>
+      <div class="nav-link"></div>
+      <div class="nav-link active"></div>
     </div>
   </div>
 
-  <!-- PAGE HEADER -->
-  <div class="wf-section-label">② Page Header</div>
-  <div class="page-header">
-    <div class="header-title"></div>
-    <div class="header-sub"></div>
+  <!-- SUB-HEADING -->
+  <div style="text-align:center; margin: 14px 0 8px; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#888;">
+    Click a region to see resorts there
   </div>
 
-  <!-- MAP -->
-  <div class="wf-section-label">③ Interactive SVG World Map</div>
-  <div class="map-container">
+  <!-- MAP SECTION -->
+  <div class="map-section">
+    <div class="map-section-label">Interactive World Map</div>
 
-    <span style="position:relative;z-index:1;font-size:11px;text-transform:uppercase;letter-spacing:0.14em;color:#999;background:rgba(255,255,255,0.75);padding:6px 14px;font-family:'Courier New',monospace;">Image of Map</span>
+    <div class="map-placeholder">
+      <!-- Simplified world map blob -->
+      <svg class="map-svg" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- North America -->
+        <path d="M50,80 L180,60 L200,90 L220,100 L210,150 L190,170 L160,200 L130,210 L100,190 L70,160 L50,120 Z" fill="#555" stroke="#333" stroke-width="1.5"/>
+        <!-- South America -->
+        <path d="M150,220 L190,210 L210,240 L215,290 L200,340 L175,360 L155,340 L140,290 L135,250 Z" fill="#555" stroke="#333" stroke-width="1.5"/>
+        <!-- Europe -->
+        <path d="M320,60 L380,55 L400,70 L410,90 L390,110 L360,120 L330,110 L315,90 Z" fill="#555" stroke="#333" stroke-width="1.5"/>
+        <!-- Africa -->
+        <path d="M330,130 L380,120 L410,140 L420,200 L410,260 L380,290 L350,280 L325,240 L315,180 L320,140 Z" fill="#555" stroke="#333" stroke-width="1.5"/>
+        <!-- Asia -->
+        <path d="M400,50 L580,40 L620,70 L640,120 L620,160 L580,170 L520,160 L460,150 L420,130 L400,100 Z" fill="#555" stroke="#333" stroke-width="1.5"/>
+        <!-- Japan area -->
+        <ellipse cx="610" cy="110" rx="18" ry="28" fill="#555" stroke="#333" stroke-width="1"/>
+        <!-- Australia -->
+        <ellipse cx="570" cy="280" rx="60" ry="45" fill="#555" stroke="#333" stroke-width="1.5"/>
+      </svg>
 
+      <!-- Region pins overlay -->
+      <div class="pin-group">
+        <!-- Canada/North America -->
+        <div class="pin" style="left:22%;top:28%;">
+          <div class="pin-dot"><span class="pin-label">CA</span></div>
+          <div class="pin-tail"></div>
+        </div>
+        <!-- USA -->
+        <div class="pin" style="left:18%;top:46%;">
+          <div class="pin-dot"><span class="pin-label">US</span></div>
+          <div class="pin-tail"></div>
+        </div>
+        <!-- France -->
+        <div class="pin" style="left:50%;top:25%;">
+          <div class="pin-dot"><span class="pin-label">FR</span></div>
+          <div class="pin-tail"></div>
+        </div>
+        <!-- Switzerland -->
+        <div class="pin" style="left:55%;top:22%;">
+          <div class="pin-dot"><span class="pin-label">SW</span></div>
+          <div class="pin-tail"></div>
+        </div>
+        <!-- Austria -->
+        <div class="pin" style="left:60%;top:23%;">
+          <div class="pin-dot" style="background:#c0392b;"><span class="pin-label">AU</span></div>
+          <div class="pin-tail"></div>
+        </div>
+        <!-- Japan -->
+        <div class="pin" style="left:82%;top:32%;">
+          <div class="pin-dot"><span class="pin-label">JP</span></div>
+          <div class="pin-tail"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-credit">By Haydn Maguire</div>
   </div>
 
-  <!-- MAP CAPTION -->
-  <div class="wf-section-label">⑤ Caption</div>
-  <div class="map-caption">
-    <div class="caption-line"></div>
+  <!-- SECTION DIVIDER -->
+  <div class="section-divider" style="position:relative;">
+    <span style="font-size:9px; letter-spacing:3px;">Resorts in [Selected Region]</span>
+    <span style="position:absolute;right:-120px;top:50%;transform:translateY(-50%);font-size:8px;color:#e74c3c;letter-spacing:1.5px;text-transform:uppercase;">→ Dynamic region label</span>
   </div>
 
-  <!-- FOOTER -->
-  <div class="wf-section-label">⑥ Footer</div>
-  <div class="page-footer">
-    <div class="footer-line"></div>
-  </div>
+  <!-- IFRAME REGION -->
+  <div class="iframe-region">
+    <span class="iframe-label">iframe — dynamically loaded on map click</span>
 
-</div>
-
-<!-- ANNOTATIONS -->
-<div class="annotation-panel">
-  <div class="annotation-title">Component Annotations</div>
-  <div class="annotation-list">
-
-    <div class="annotation-item">
-      <div class="annotation-num">①</div>
-      <div class="annotation-text">
-        <strong>Navigation Bar</strong>
-        Dark background. Three links — Home, Browse Resorts, Resort Map (active). Consistent with other pages.
+    <!-- iframe inner navbar -->
+    <div class="iframe-navbar">
+      <div class="brand"></div>
+      <div class="nav-links">
+        <div class="nav-link"></div>
+        <div class="nav-link active"></div>
+        <div class="nav-link"></div>
       </div>
     </div>
 
-    <div class="annotation-item">
-      <div class="annotation-num">②</div>
-      <div class="annotation-text">
-        <strong>Page Header</strong>
-        Centred heading "World Resort Map" with subtitle "Click a region to see resorts there" as instructional copy.
-      </div>
-    </div>
+    <!-- iframe inner content -->
+    <div class="iframe-content">
+      <div class="iframe-page-title">Ski Resorts in [Country]</div>
 
-    <div class="annotation-item">
-      <div class="annotation-num">③</div>
-      <div class="annotation-text">
-        <strong>SVG World Map</strong>
-        Interactive SVG with coloured country/region blobs on a light blue ocean background. Grid lines overlay for map feel.
+      <!-- Filter -->
+      <div class="filter-bar">
+        <div class="filter-label">Filter by Country / Favourites / Snowfall or Elevation</div>
+        <div class="filter-dropdown">
+          <div style="display:flex;align-items:center;">
+            <div class="flag-box"></div>
+            <span>All Resorts</span>
+          </div>
+          <span class="chevron">▾</span>
+        </div>
       </div>
-    </div>
 
-    <div class="annotation-item">
-      <div class="annotation-num">④</div>
-      <div class="annotation-text">
-        <strong>Clickable Regions</strong>
-        Each country shape is a clickable element. Clicking filters or navigates to resorts in that country/region. Active state shown with blue border highlight.
-      </div>
-    </div>
+      <!-- Resort Cards -->
+      <div class="cards-grid">
 
-    <div class="annotation-item">
-      <div class="annotation-num">⑤</div>
-      <div class="annotation-text">
-        <strong>Map Caption</strong>
-        Small disclaimer text below the map: "Map regions are approximate – click to explore resorts by country/region."
-      </div>
-    </div>
+        <!-- Card 1 -->
+        <div class="resort-card">
+          <div class="card-image">
+            <svg class="card-image-lines" viewBox="0 0 200 80" preserveAspectRatio="none">
+              <line x1="0" y1="0" x2="200" y2="80" stroke="#bbb" stroke-width="1"/>
+              <line x1="200" y1="0" x2="0" y2="80" stroke="#bbb" stroke-width="1"/>
+            </svg>
+            <span class="card-image-label">Resort Photo</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Resort Name</div>
+            <div class="card-meta">
+              <div class="meta-row"><div class="meta-key"></div><div class="meta-val"></div></div>
+              <div class="meta-row"><div class="meta-key"></div><div class="meta-val" style="width:60%;flex:none;"></div></div>
+              <div class="meta-row"><div class="meta-key"></div><div class="meta-val" style="width:50%;flex:none;"></div></div>
+              <div class="meta-row"><div class="meta-key"></div><div class="meta-val" style="width:70%;flex:none;"></div></div>
+            </div>
+            <div class="card-desc">
+              <div class="desc-line"></div>
+              <div class="desc-line"></div>
+              <div class="desc-line"></div>
+              <div class="desc-line"></div>
+            </div>
+          </div>
+        </div>
 
-    <div class="annotation-item">
-      <div class="annotation-num">⑥</div>
-      <div class="annotation-text">
-        <strong>Footer</strong>
-        Shared GlobalFooter.php — dark background, centred copyright credit. Consistent with all other pages.
-      </div>
-    </div>
+        <!-- Card 2 -->
+        <div class="resort-card">
+          <div class="card-image">
+            <svg class="card-image-lines" viewBox="0 0 200 80" preserveAspectRatio="none">
+              <line x1="0" y1="0" x2="200" y2="80" stroke="#bbb" stroke-width="1"/>
+              <line x1="200" y1="0" x2="0" y2="80" stroke="#bbb" stroke-width="1"/>
+            </svg>
+            <span class="card-image-label">Resort Photo</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Resort Name</div>
+            <div class="card-meta">
+              <div class="meta-row"><div class="meta-key"></div><div class="meta-val"></div></div>
+              <div class="meta-row"><div class="meta-key"></div><div class="meta-val" style="width:65%;flex:none;"></div></div>
+              <div class="meta-row"><div class="meta-key"></div><div class="meta-val" style="width:55%;flex:none;"></div></div>
+              <div class="meta-row"><div class="meta-key"></div><div class="meta-val" style="width:75%;flex:none;"></div></div>
+            </div>
+            <div class="card-desc">
+              <div class="desc-line"></div>
+              <div class="desc-line"></div>
+              <div class="desc-line"></div>
+              <div class="desc-line"></div>
+            </div>
+          </div>
+        </div>
 
+      </div><!-- /cards-grid -->
+    </div><!-- /iframe-content -->
+
+    <!-- iframe footer -->
+    <div class="iframe-footer">Haydn Maguire © 2026</div>
+
+  </div><!-- /iframe-region -->
+
+</div><!-- /page -->
+
+<!-- LEGEND -->
+<div class="legend">
+  <h3>Wireframe Legend</h3>
+  <div class="legend-item"><div class="legend-swatch swatch-solid"></div>Primary UI / Chrome</div>
+  <div class="legend-item"><div class="legend-swatch swatch-light"></div>Map Background</div>
+  <div class="legend-item"><div class="legend-swatch swatch-dashed"></div>Container / Card</div>
+  <div class="legend-item"><div class="legend-swatch swatch-red"></div>Interactive / Active Element</div>
+  <div class="legend-item"><div class="legend-swatch swatch-iframe"></div>Iframe Region (dynamic)</div>
+  <div class="legend-item" style="width:100%;margin-top:4px;">
+    <div style="width:20px;height:14px;border:1.5px dashed #e74c3c;border-radius:2px;flex-shrink:0;"></div>
+    Red annotations = notes for the developer
   </div>
 </div>
 

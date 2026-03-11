@@ -1,13 +1,13 @@
-<!--Resort.php-->
+<!--index.php-->
 <?php
-include 'Database/ski_db_connect.php';  // Uncomment only if adding DB data
+// include 'Database/ski_db_connect.php';  // Uncomment only if adding DB data
 ?>
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 
 <!-- Styles Sheet -->
-<link rel="stylesheet" href="css/indstyle.css">
+<link rel="stylesheet" href="css/indstyle.css"> <!--Need to get .hero css-->
 <link rel="stylesheet" href="css/GStyles.css">
 <head>
 <meta charset="UTF-8">
@@ -32,7 +32,7 @@ include 'Database/ski_db_connect.php';  // Uncomment only if adding DB data
             aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a styles="#btb{color: blue;}" href="Browse.php" id="btb" class="btn btn-secondary btn-sm px-5"> <!--Back to Browse-->
+    <a href="Browse.php" id="btb" class="btn btn-secondary btn-sm px-5"> <!--Back to Browse-->
         <span class="btn-text">Back to Browse?</span>
         </a>
     </div>
@@ -64,24 +64,8 @@ include 'Database/ski_db_connect.php';  // Uncomment only if adding DB data
   <!-- Hero Section, Introduction to the website. -->
   <div class="hero">
     <div class="container">
-      <h1 class="display-4 fw-bold text-white mb-3">Discover the World's Best Ski Resorts</h1>
-      <p class="lead text-white-75 mb-4">Explore epic slopes, deep powder, and unforgettable mountain experiences</p>
-      
-      <div class="btn-wrapper">
-        <a href="browse.php" id="btnBrowse" class="btn btn-primary btn-lg px-5">
-          <span class="btn-text">Browse Resorts</span>
-        </a>
-        <div class="bashercontainer">
-          <img src="Assets/svg/piestbasherhm.svg" class="basher-anim" alt="piest-basher" width="38" height="38">
-        </div>
-      </div>
-
-      <div class="btn-wrapper">
-        <a href="ResortMap.php" id="btnMap" class="btn btn-primary btn-lg px-5">
-        <span class="btn-text">Resort Map</span>
-        </a>
-        <img src="Assets/svg/plane.svg" class="plane-anim" alt="plane" width="28" height="28">
-      </div>
+        <h1 class="display-4 fw-bold text-white mb-3">Discover more about [resort_name]!</h1>
+        <p class="lead text-white-75 mb-4">Explore epic slopes, deep powder, and unforgettable mountain experiences</p>
     </div>
   </div>
 
