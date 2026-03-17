@@ -23,12 +23,13 @@ footer {
 }
 
 #AboutSite{
-    transform: translateY(-3px);
-    transition: transform 0.65s;
+    transition: transform 0.65s ease-in-out !important;
     box-shadow: 0 6px 16px rgba(34, 85, 203, 0.301) !important;
 }
 #AboutSite:hover{
     box-shadow: 0 6px 16px rgba(41, 101, 243, 0.451) !important;
+    cursor: not-allowed;
+    transform: translateZ(-3px);
 }
 
 /* Hero Buttons */

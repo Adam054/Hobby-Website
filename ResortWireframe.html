@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe — resort.php (Mobile & Tablet)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #eceae5;
+    font-family: 'Courier New', monospace;
+    color: #2a2a2a;
+    padding: 30px 20px 60px;
+  }
+
+  h1.doc-title {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: #888; text-align: center; margin-bottom: 6px;
+  }
+  h1.doc-title span { display: inline-block; padding: 7px 20px; border: 1.5px solid #ccc; }
+  .doc-sub { text-align: center; font-size: 8px; color: #aaa; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 24px; }
+
+  /* ── LEGEND ── */
+  .legend {
+    max-width: 760px; margin: 0 auto 20px;
+    display: flex; gap: 20px; flex-wrap: wrap;
+    padding: 10px 14px; border: 1px solid #ccc; background: #fff;
+    font-size: 9px; color: #555; align-items: center;
+  }
+  .legend-title { font-weight: bold; color: #333; letter-spacing: 0.08em; text-transform: uppercase; margin-right: 6px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .legend-chip { width: 28px; height: 10px; border-radius: 2px; }
+  .chip-db1 { background: #ffd580; border: 1px solid #e6b800; }
+  .chip-db2 { background: #a8e6cf; border: 1px solid #3dba7a; }
+  .chip-static { background: #ddd; border: 1px solid #bbb; }
+
+  /* ── DEVICE ROW ── */
+  .device-row {
+    display: flex; gap: 40px; align-items: flex-start;
+    justify-content: center; flex-wrap: wrap;
+  }
+
+  .device-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .device-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.14em; color: #999; }
+  .device-note { font-size: 8px; color: #aaa; text-align: center; max-width: 220px; }
+
+  /* Phone shell */
+  .phone-shell {
+    width: 210px; border: 3px solid #888; border-radius: 20px;
+    background: #f9f7f4; overflow: hidden; box-shadow: 3px 3px 0 #ccc;
+  }
+  .phone-notch { width: 50px; height: 8px; background: #888; border-radius: 0 0 6px 6px; margin: 0 auto; }
+
+  /* Tablet shell */
+  .tablet-shell {
+    width: 340px; border: 3px solid #888; border-radius: 10px;
+    background: #f9f7f4; overflow: hidden; box-shadow: 3px 3px 0 #ccc;
+  }
+  .tablet-camera { width: 6px; height: 6px; background: #888; border-radius: 50%; margin: 5px auto 0; }
+
+  /* ── SHARED WF PRIMITIVES ── */
+  .wf-section-label {
+    font-size: 7px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: #bbb; text-align: right; padding: 2px 6px;
+    background: #f0ede8; border-bottom: 1px dashed #ddd;
+  }
+
+  /* NAV */
+  .wf-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 7px 10px; background: #1e1e1e;
+  }
+  .wf-nav-logo { height: 9px; background: #666; border-radius: 1px; }
+  .wf-nav-btn {
+    border: 1px solid #666; padding: 3px 8px;
+    display: flex; align-items: center; gap: 4px; border-radius: 2px; background: #333;
+  }
+  .wf-nav-btn-arrow { width: 7px; height: 7px; background: #888; border-radius: 1px; }
+  .wf-nav-btn-lbl { height: 7px; background: #777; border-radius: 1px; }
+
+  /* Hero — compact on mobile */
+  .wf-hero {
+    position: relative; overflow: hidden;
+    background: #b0aba4;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+  }
+  .wf-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to bottom right, transparent calc(50% - 0.5px), #999 calc(50% - 0.5px), #999 calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+      linear-gradient(to top right, transparent calc(50% - 0.5px), #999 calc(50% - 0.5px), #999 calc(50% + 0.5px), transparent calc(50% + 0.5px));
+  }
+  .wf-hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(10,10,30,0.4) 0%, rgba(5,5,20,0.75) 100%);
+  }
+  .wf-hero-note {
+    position: absolute; top: 5px; left: 5px; z-index: 3;
+    background: rgba(255,255,255,0.1); border: 1px dashed #ccc; padding: 2px 5px;
+  }
+  .wf-hero-note span { font-size: 6px; color: #ddd; text-transform: uppercase; letter-spacing: 0.08em; }
+  .wf-hero-content { position: relative; z-index: 3; text-align: center; padding: 0 12px 12px; }
+  .wf-hero-name { height: 14px; border-radius: 1px; background: rgba(255,255,255,0.85); margin: 0 auto 6px; }
+  .wf-hero-country { height: 8px; border-radius: 1px; background: rgba(255,255,255,0.4); margin: 0 auto; }
+
+  /* Stacked cards on mobile */
+  .wf-card {
+    background: #1e1e2e; border: 1.5px dashed #777;
+    padding: 10px 12px; margin: 0;
+    border-top: 1px solid #333;
+  }
+  .wf-card-heading {
+    display: flex; align-items: center; gap: 5px;
+    margin-bottom: 8px; padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+  .wf-card-icon { width: 11px; height: 11px; background: #555; border-radius: 2px; }
+  .wf-card-title { height: 8px; background: rgba(255,255,255,0.7); border-radius: 1px; }
+
+  .wf-row { display: flex; gap: 4px; margin-bottom: 4px; align-items: center; position: relative; }
+  .wf-key { height: 6px; border-radius: 1px; background: rgba(255,255,255,0.25); flex-shrink: 0; }
+  .wf-val-db1 { height: 6px; border-radius: 1px; background: rgba(255,213,128,0.55); border: 1px solid rgba(255,213,128,0.7); }
+  .wf-val-db2 { height: 6px; border-radius: 1px; background: rgba(168,230,207,0.45); border: 1px solid rgba(168,230,207,0.7); }
+  .wf-hr { border: none; border-top: 1px solid rgba(255,255,255,0.12); margin: 6px 0; }
+
+  .wf-desc { height: 5px; border-radius: 1px; background: rgba(255,213,128,0.35); margin-bottom: 3px; }
+
+  /* Badges */
+  .wf-badge-row { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+  .wf-badge {
+    border: 1px solid #777; border-radius: 20px;
+    padding: 2px 6px; display: flex; align-items: center; gap: 3px;
+  }
+  .wf-badge-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+  .wf-badge-lbl { height: 5px; background: #777; border-radius: 1px; }
+
+  /* data source tiny tags inline */
+  .t1 { font-size: 5.5px; color: #ffd580; letter-spacing: 0.04em; white-space: nowrap; }
+  .t2 { font-size: 5.5px; color: #a8e6cf; letter-spacing: 0.04em; white-space: nowrap; }
+
+  /* Footer */
+  .wf-footer { background: #1e1e1e; padding: 8px; text-align: center; border-top: 1px solid #333; }
+  .wf-footer-line { width: 80px; height: 6px; background: #444; border-radius: 1px; margin: 0 auto; }
+
+  /* ── ANNOTATIONS ── */
+  .annotation-panel { max-width: 760px; margin: 24px auto 0; padding: 0 4px 40px; }
+  .annotation-title {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em;
+    color: #888; border-bottom: 1px solid #ccc; padding-bottom: 6px; margin-bottom: 14px;
+  }
+  .annotation-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+  .annotation-item { display: flex; gap: 8px; align-items: flex-start; }
+  .annotation-num {
+    width: 18px; height: 18px; min-width: 18px;
+    border: 1.5px solid #999; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; color: #666; margin-top: 1px;
+  }
+  .annotation-text { font-size: 10px; color: #666; line-height: 1.5; }
+  .annotation-text strong { color: #333; display: block; }
+</style>
+</head>
+<body>
+
+<h1 class="doc-title"><span>Haydn Maguire - Wireframe - resort.php (Mobile & Tablet)</span></h1>
+<p class="doc-sub">Cards stack vertically below the hero on smaller screens</p>
+
+<!-- LEGEND -->
+<div class="legend">
+  <span class="legend-title">Data Sources:</span>
+  <div class="legend-item"><div class="legend-chip chip-db1"></div><span>resorts table</span></div>
+  <div class="legend-item"><div class="legend-chip chip-db2"></div><span>resort_details table</span></div>
+  <div class="legend-item"><div class="legend-chip chip-static"></div><span>Static content</span></div>
+</div>
+
+<div class="device-row">
+
+  <!-- ── PHONE ── -->
+  <div class="device-wrap">
+    <div class="device-label">Phone</div>
+    <div class="phone-shell">
+      <div class="phone-notch"></div>
+
+      <!-- Nav -->
+      <div class="wf-section-label">① Nav</div>
+      <div class="wf-nav">
+        <div class="wf-nav-logo" style="width:55px;"></div>
+        <div class="wf-nav-btn">
+          <div class="wf-nav-btn-arrow"></div>
+          <div class="wf-nav-btn-lbl" style="width:65px;"></div>
+        </div>
+      </div>
+
+      <!-- Hero — shorter on phone -->
+      <div class="wf-section-label">② Hero (shorter)</div>
+      <div class="wf-hero" style="height:110px;">
+        <div class="wf-hero-note"><span>Faded Photo</span></div>
+        <div class="wf-hero-content" style="padding-top:30px;">
+          <div class="wf-hero-name" style="width:140px;"></div>
+          <div class="wf-hero-country" style="width:50px;"></div>
+        </div>
+      </div>
+
+      <!-- Overview Card stacked below hero -->
+      <div class="wf-section-label">③ Overview Card (stacked)</div>
+      <div class="wf-card">
+        <div class="wf-card-heading">
+          <div class="wf-card-icon"></div>
+          <div class="wf-card-title" style="width:80px;"></div>
+        </div>
+        <div class="wf-row"><div class="wf-key" style="width:36px;"></div><div class="wf-val-db1" style="width:40px;"></div><span class="t1" style="margin-left:auto;">.country</span></div>
+        <div class="wf-row"><div class="wf-key" style="width:42px;"></div><div class="wf-val-db1" style="width:45px;"></div><span class="t1" style="margin-left:auto;">.elevation_m</span></div>
+        <div class="wf-row"><div class="wf-key" style="width:28px;"></div><div class="wf-val-db1" style="width:38px;"></div><span class="t1" style="margin-left:auto;">.piste_km</span></div>
+        <div class="wf-row"><div class="wf-key" style="width:55px;"></div><div class="wf-val-db1" style="width:40px;"></div><span class="t1" style="margin-left:auto;">.avg_snowfall_cm</span></div>
+        <hr class="wf-hr">
+        <div class="wf-desc" style="width:100%;"></div>
+        <div class="wf-desc" style="width:88%;"></div>
+        <div class="wf-desc" style="width:70%;"></div>
+        <span class="t1" style="display:block;margin-top:2px;">.description</span>
+      </div>
+
+      <!-- Details Card stacked below -->
+      <div class="wf-section-label">④ Details Card (stacked)</div>
+      <div class="wf-card">
+        <div class="wf-card-heading">
+          <div class="wf-card-icon"></div>
+          <div class="wf-card-title" style="width:75px;"></div>
+        </div>
+        <div class="wf-row"><div class="wf-key" style="width:30px;"></div><div class="wf-val-db2" style="width:70px;"></div><span class="t2" style="margin-left:auto;">.ski_season</span></div>
+        <div class="wf-row"><div class="wf-key" style="width:55px;"></div><div class="wf-val-db2" style="width:55px;"></div><span class="t2" style="margin-left:auto;">.nearest_airport</span></div>
+        <div class="wf-row"><div class="wf-key" style="width:24px;"></div><div class="wf-val-db2" style="width:18px;"></div><span class="t2" style="margin-left:auto;">.lift_count</span></div>
+        <div class="wf-row"><div class="wf-key" style="width:28px;"></div><div class="wf-val-db2" style="width:18px;"></div><span class="t2" style="margin-left:auto;">.run_count</span></div>
+        <div class="wf-row"><div class="wf-key" style="width:44px;"></div><div class="wf-val-db2" style="width:50px;"></div><span class="t2" style="margin-left:auto;">.difficulty_rating</span></div>
+        <hr class="wf-hr">
+        <div class="wf-badge-row">
+          <div class="wf-badge" style="border-color:#e87070;"><div class="wf-badge-dot" style="background:#e87070;"></div><div class="wf-badge-lbl" style="width:42px;"></div></div>
+          <div class="wf-badge" style="border-color:#70c870;"><div class="wf-badge-dot" style="background:#70c870;"></div><div class="wf-badge-lbl" style="width:36px;"></div></div>
+          <div class="wf-badge" style="border-color:#70c870;"><div class="wf-badge-dot" style="background:#70c870;"></div><div class="wf-badge-lbl" style="width:46px;"></div></div>
+        </div>
+        <span class="t2" style="display:block;margin-top:4px;">.night_skiing / .ski_school / .terrain_park (bool)</span>
+      </div>
+
+      <!-- Footer -->
+      <div class="wf-section-label">⑤ Footer</div>
+      <div class="wf-footer"><div class="wf-footer-line"></div></div>
+    </div>
+    <div class="device-note">Hero shrinks, both cards stack full-width below in document flow</div>
+  </div>
+
+  <!-- ── TABLET ── -->
+  <div class="device-wrap">
+    <div class="device-label">Tablet</div>
+    <div class="tablet-shell">
+      <div class="tablet-camera"></div>
+
+      <!-- Nav -->
+      <div class="wf-section-label">① Nav</div>
+      <div class="wf-nav">
+        <div class="wf-nav-logo" style="width:75px;"></div>
+        <div class="wf-nav-btn">
+          <div class="wf-nav-btn-arrow"></div>
+          <div class="wf-nav-btn-lbl" style="width:80px;"></div>
+        </div>
+      </div>
+
+      <!-- Hero — medium height on tablet -->
+      <div class="wf-section-label">② Hero (medium height)</div>
+      <div class="wf-hero" style="height:150px;">
+        <div class="wf-hero-note"><span>Faded Background Photo</span></div>
+        <div class="wf-hero-content" style="padding-top:40px;">
+          <div class="wf-hero-name" style="width:200px;"></div>
+          <div class="wf-hero-country" style="width:65px;"></div>
+        </div>
+      </div>
+
+      <!-- Overview Card -->
+      <div class="wf-section-label">③ Overview Card (stacked, full width)</div>
+      <div class="wf-card" style="padding:12px 16px;">
+        <div class="wf-card-heading">
+          <div class="wf-card-icon"></div>
+          <div class="wf-card-title" style="width:100px;"></div>
+        </div>
+        <div class="wf-row"><div class="wf-key" style="width:42px;"></div><div class="wf-val-db1" style="width:55px;"></div><span class="t1" style="margin-left:auto;">.country</span></div>
+        <div class="wf-row"><div class="wf-key" style="width:48px;"></div><div class="wf-val-db1" style="width:55px;"></div><span class="t1" style="margin-left:auto;">.elevation_m</span></div>
+        <div class="wf-row"><div class="wf-key" style="width:34px;"></div><div class="wf-val-db1" style="width:45px;"></div><span class="t1" style="margin-left:auto;">.piste_km</span></div>
+        <div class="wf-row"><div class="wf-key" style="width:62px;"></div><div class="wf-val-db1" style="width:48px;"></div><span class="t1" style="margin-left:auto;">.avg_snowfall_cm</span></div>
+        <hr class="wf-hr">
+        <div class="wf-desc" style="width:100%;"></div>
+        <div class="wf-desc" style="width:92%;"></div>
+        <div class="wf-desc" style="width:75%;"></div>
+        <span class="t1" style="display:block;margin-top:2px;">.description</span>
+      </div>
+
+      <!-- Details Card -->
+      <div class="wf-section-label">④ Details Card (stacked, full width)</div>
+      <div class="wf-card" style="padding:12px 16px;">
+        <div class="wf-card-heading">
+          <div class="wf-card-icon"></div>
+          <div class="wf-card-title" style="width:90px;"></div>
+        </div>
+        <div class="wf-row"><div class="wf-key" style="width:36px;"></div><div class="wf-val-db2" style="width:90px;"></div><span class="t2" style="margin-left:auto;">.ski_season</span></div>
+        <div class="wf-row"><div class="wf-key" style="width:65px;"></div><div class="wf-val-db2" style="width:75px;"></div><span class="t2" style="margin-left:auto;">.nearest_airport</span></div>
+        <div class="wf-row"><div class="wf-key" style="width:28px;"></div><div class="wf-val-db2" style="width:22px;"></div><span class="t2" style="margin-left:auto;">.lift_count</span></div>
+        <div class="wf-row"><div class="wf-key" style="width:32px;"></div><div class="wf-val-db2" style="width:22px;"></div><span class="t2" style="margin-left:auto;">.run_count</span></div>
+        <div class="wf-row"><div class="wf-key" style="width:50px;"></div><div class="wf-val-db2" style="width:60px;"></div><span class="t2" style="margin-left:auto;">.difficulty_rating</span></div>
+        <hr class="wf-hr">
+        <div class="wf-badge-row">
+          <div class="wf-badge" style="border-color:#e87070;"><div class="wf-badge-dot" style="background:#e87070;"></div><div class="wf-badge-lbl" style="width:55px;"></div></div>
+          <div class="wf-badge" style="border-color:#70c870;"><div class="wf-badge-dot" style="background:#70c870;"></div><div class="wf-badge-lbl" style="width:44px;"></div></div>
+          <div class="wf-badge" style="border-color:#70c870;"><div class="wf-badge-dot" style="background:#70c870;"></div><div class="wf-badge-lbl" style="width:55px;"></div></div>
+        </div>
+        <span class="t2" style="display:block;margin-top:4px;">.night_skiing / .ski_school / .terrain_park (bool)</span>
+      </div>
+
+      <!-- Footer -->
+      <div class="wf-section-label">⑤ Footer</div>
+      <div class="wf-footer"><div class="wf-footer-line" style="width:100px;"></div></div>
+    </div>
+    <div class="device-note">Hero taller than phone. Cards still stack vertically at full width.</div>
+  </div>
+
+</div><!-- end device-row -->
+
+<!-- ANNOTATIONS -->
+<div class="annotation-panel">
+  <div class="annotation-title">Component Annotations — Mobile & Tablet</div>
+  <div class="annotation-list">
+
+    <div class="annotation-item">
+      <div class="annotation-num">①</div>
+      <div class="annotation-text">
+        <strong>Navigation</strong>
+        Logo left, "← Return to Browse" button right on both breakpoints. No hamburger needed — only one button.
+      </div>
+    </div>
+
+    <div class="annotation-item">
+      <div class="annotation-num">②</div>
+      <div class="annotation-text">
+        <strong>Hero — Reduced Height</strong>
+        Shorter than desktop. Still shows faded <span style="background:#ffd58044;border:1px solid #ffd580;padding:0 3px;">resorts.image_url</span> background. Resort name + country centred.
+      </div>
+    </div>
+
+    <div class="annotation-item">
+      <div class="annotation-num">③</div>
+      <div class="annotation-text">
+        <strong>Cards — Stacked Vertically</strong>
+        Both frosted cards stack full-width below the hero in document flow. Overview first, Details second.
+      </div>
+    </div>
+
+    <div class="annotation-item">
+      <div class="annotation-num">④</div>
+      <div class="annotation-text">
+        <strong>Data Source Colours</strong>
+        <span style="background:#ffd58044;border:1px solid #ffd580;padding:0 3px;">Yellow = resorts table</span> &nbsp;
+        <span style="background:#a8e6cf44;border:1px solid #a8e6cf;padding:0 3px;">Green = resort_details table</span>. All values via PHP htmlspecialchars / number_format.
+      </div>
+    </div>
+
+    <div class="annotation-item">
+      <div class="annotation-num">⑤</div>
+      <div class="annotation-text">
+        <strong>Feature Badges</strong>
+        Boolean fields (night_skiing, ski_school, terrain_park) from resort_details. Red dot = false, green dot = true. Wrap naturally on narrow screens.
+      </div>
+    </div>
+
+    <div class="annotation-item">
+      <div class="annotation-num">⑥</div>
+      <div class="annotation-text">
+        <strong>PHP Defensive Logic</strong>
+        If $resort_id ≤ 0 or resort not found → redirect to browse.php. If $details is null → fallback text shown in details card instead of data.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

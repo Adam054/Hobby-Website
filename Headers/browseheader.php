@@ -19,7 +19,6 @@
   <!-- Bootstrap Icons CDN (for arrow-up icon in scroll button) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   
-  <!-- Custom dark theme styles -->
   <style>
     body {
       background-color: #0d1117;     /* the dark background */
@@ -32,14 +31,11 @@
     }
     .card:hover {
       transform: translateY(-4px);   /* Lift effect on hover */
-      box-shadow: 0 10px 20px rgba(0,0,0,0.4); 
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
     }
     .card-img-top {
       height: 200px;
       object-fit: cover;             /* Ensures images fill space nicely */
-    }
-    footer {
-      background-color: #010409;     /* Almost black footer */
     }
   </style>
 </head>

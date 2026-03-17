@@ -98,10 +98,11 @@
               </li>
 
               <li class="list-group-item bg-dark text-light border-secondary">
-                <strong>Browse page</strong>: Displays 10 ski resorts pulled dynamically
+                <strong>Browse page</strong>: Displays 10 interactive ski resorts pulled dynamically
                 from a MySQL database using PHP and XAMPP. Supports filtering by Country,
                 Snowfall, Elevation, and Author's Favourite, with a dynamic page heading
-                that updates to match the active filter.
+                that updates to match the active filter. Each Interactive card brings you
+                to a new page in which extra resort information can be found!
               </li>
 
               <li class="list-group-item bg-dark text-light border-secondary">
@@ -127,7 +128,7 @@
 
             </ul>
             <p class="text-center text-secondary">
-              Technologies used: HTML5, CSS3, Bootstrap 5, PHP, MySQL, vanilla JavaScript.<br>
+              Languages/Frameworks used: HTML5, CSS3, Bootstrap 5, PHP, MySQL, vanilla JavaScript.<br>
               All content is read-only - no login or forms.
             </p>
           </div>
@@ -171,10 +172,11 @@
       </div>
     </div>
 
-    <!-- technical note -->
-    <div class="text-center mt-5">
+
+<!-- Last Updated -->
+    <div class="text-center mt-4 mb-2">
       <p class="text-secondary">
-        Last Updated • <?php echo date("d F Y", strtotime("2026-02-17")); ?>
+        Last Updated • <?php echo date("d F Y", strtotime("2026-03-11")); ?>
       </p>
     </div>
   </div>

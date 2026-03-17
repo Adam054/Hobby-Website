@@ -1,6 +1,5 @@
 <!--resort.php-->
 <?php
-// ─── DATABASE & FILTERING MUST COME FIRST ───────────────────────────────────
 include 'Database/ski_db_connect.php';
 
 $resort_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -37,7 +36,7 @@ $details = mysqli_fetch_assoc($ResResult);
     <link rel="icon" type="image/png" href="Assets/hm.png">
 
     <style>
-        /* ── Full-viewport hero with faded background image ── */
+        /*  Full hero with faded background image */
         .resort-hero {
             background-image: url('<?= htmlspecialchars($resort['image_url']) ?>');
             background-size: cover;
@@ -75,11 +74,9 @@ $details = mysqli_fetch_assoc($ResResult);
         <!-- Title centred vertically and horizontally -->
         <div class="resort-title">
             <h1><?= htmlspecialchars($resort['resort_name']) ?></h1>
-            <p>
+            <h4>
                 <?= htmlspecialchars($resort['country']) ?>
-                &nbsp;•&nbsp;
-                Explore epic slopes and unforgettable mountain experiences
-            </p>
+            </h4>
         </div>
 
         <!-- Cards far left and far right -->
@@ -117,21 +114,35 @@ $details = mysqli_fetch_assoc($ResResult);
                         <!-- Feature badges — always visible, green = yes, faded red = no -->
                         <div class="mt-2">
 
-                            <span class="availability-badge <?= $details['night_skiing'] ? 'badge-yes' : 'badge-no' ?>">
-                                <span class="badge-dot"></span>
-                                🌙 Night Skiing
-                            </span>
+                        <span class="availability-badge <?= $details['night_skiing'] ? 'badge-yes' : 'badge-no' ?>">
+                        <span class="badge-dot"></span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px;">
+                                <path d="M21 12.5A8.5 8.5 0 1 1 11.5 3 7 7 0 0 0 21 12.5z"/>
+                                <line x1="6" y1="18" x2="18" y2="22"/>
+                                <line x1="4" y1="16" x2="16" y2="20"/> <!--Creats a Moon with skis-->
+                            </svg>
+                        Night Skiing
+                        </span>
 
-                            <span class="availability-badge <?= $details['ski_school'] ? 'badge-yes' : 'badge-no' ?>">
-                                <span class="badge-dot"></span>
-                                🎿 Ski School
-                            </span>
+                        <span class="availability-badge <?= $details['ski_school'] ? 'badge-yes' : 'badge-no' ?>">
+                            <span class="badge-dot"></span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    style="vertical-align:middle;margin-right:6px;"> <!-- Creates a Book inline svg-->
+                                    <path d="M3 4h7a3 3 0 0 1 3 3v13H6a3 3 0 0 0-3 3z"/>
+                                    <path d="M21 4h-7a3 3 0 0 0-3 3v13h7a3 3 0 0 1 3 3z"/>
+                                </svg>
+                            Ski School
+                        </span>
 
-                            <span class="availability-badge <?= $details['terrain_park'] ? 'badge-yes' : 'badge-no' ?>">
-                                <span class="badge-dot"></span>
-                                🏂 Terrain Park
-                            </span>
-
+                        <span class="availability-badge <?= $details['terrain_park'] ? 'badge-yes' : 'badge-no' ?>">
+                            <span class="badge-dot"></span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px;">
+                                <path d="M3 17h18v2H3v-2zm2-4l6-6 4 4 4-4 2 2-6 6-4-4-4 4-2-2z"/> <!-- Makes a bar slide -->
+                            </svg>
+                            Terrain Park
+                        </span>
                         </div>
                     <?php else: ?>
                         <p style="color: rgba(255,255,255,0.4)">No extra details available yet.</p>
@@ -143,13 +154,6 @@ $details = mysqli_fetch_assoc($ResResult);
     </div><!-- end overlay -->
 </div><!-- end hero -->
 
-<!-- Last Updated -->
-<div class="text-center mt-4 mb-2">
-    <p class="text-secondary">
-        Last Updated • <?php echo date("d F Y", strtotime("2026-03-11")); ?>
-    </p>
-</div>
-
 <!-- Footer -->
 <?php include 'Footer/GlobalFooter.php'; ?>
 
@@ -158,7 +162,5 @@ $details = mysqli_fetch_assoc($ResResult);
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 <script src="js/ScrollToTop.js"></script>
-<script src="js/Animations.js"></script>
-
 </body>
 </html>
