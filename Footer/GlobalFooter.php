@@ -16,7 +16,7 @@
   <!-- Footer -->
   <footer class="py-4 text-center text-secondary border-top border-secondary">
     <div class="container">
-      <p class="mb-0">Haydn Maguire © <?php echo date("Y"); ?></p>
+      <p class="mb-0">Haydn Maguire &copy; <?php echo date("Y"); ?></p>
     </div>
   </footer>
 

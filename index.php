@@ -78,7 +78,7 @@
     <div class="row justify-content-center">
       <div class="col-lg-10">
         <div class="card shadow border-secondary">
-          <div class="card-body p-5">
+          <div class="card-body p-5" id="AboutSite">
             <h2 class="card-title text-center mb-4">About This Site</h2>
             <p class="lead text-center mb-4">
               Welcome! This is my personal read-only hobby website about <strong>ski resorts around the world</strong>.
@@ -98,10 +98,11 @@
               </li>
 
               <li class="list-group-item bg-dark text-light border-secondary">
-                <strong>Browse page</strong>: Displays 10 ski resorts pulled dynamically
+                <strong>Browse page</strong>: Displays 10 interactive ski resorts pulled dynamically
                 from a MySQL database using PHP and XAMPP. Supports filtering by Country,
                 Snowfall, Elevation, and Author's Favourite, with a dynamic page heading
-                that updates to match the active filter.
+                that updates to match the active filter. Each Interactive card brings you
+                to a new page in which extra resort information can be found!
               </li>
 
               <li class="list-group-item bg-dark text-light border-secondary">
@@ -127,7 +128,7 @@
 
             </ul>
             <p class="text-center text-secondary">
-              Technologies used: HTML5, CSS3, Bootstrap 5, PHP, MySQL, vanilla JavaScript.<br>
+              Languages/Frameworks used: HTML5, CSS3, Bootstrap 5, PHP, MySQL, vanilla JavaScript.<br>
               All content is read-only - no login or forms.
             </p>
           </div>
@@ -141,7 +142,7 @@
     <div class="row g-4 text-center">
       <div class="col-md-4">
         <div class="card h-100 shadow">
-          <div class="card-body">
+          <div class="card-body" id="AboutSite">
             <h5 class="card-title">Best Snow?</h5>
             <p class="card-text text-secondary">
               Experience legendary deep powder in Japan, Canada, and the Alps.
@@ -151,7 +152,7 @@
       </div>
       <div class="col-md-4">
         <div class="card h-100 shadow">
-          <div class="card-body">
+          <div class="card-body" id="AboutSite">
             <h5 class="card-title">Highest Altitude?</h5>
             <p class="card-text text-secondary">
               Ski above 3000 m with breathtaking views and reliable snow.
@@ -161,7 +162,7 @@
       </div>
       <div class="col-md-4">
         <div class="card h-100 shadow">
-          <div class="card-body">
+          <div class="card-body" id="AboutSite">
             <h5 class="card-title">Pinnacle of Varied Terrain?</h5>
             <p class="card-text text-secondary">
               From beginner friendly blues to expert pistes (Black runs) and off-piste skiing available.
@@ -171,10 +172,11 @@
       </div>
     </div>
 
-    <!-- technical note -->
-    <div class="text-center mt-5">
+
+<!-- Last Updated -->
+    <div class="text-center mt-4 mb-2">
       <p class="text-secondary">
-        Last Updated • <?php echo date("d F Y", strtotime("2026-02-17")); ?>
+        Last Updated • <?php echo date("d F Y", strtotime("2026-03-11")); ?>
       </p>
     </div>
   </div>
